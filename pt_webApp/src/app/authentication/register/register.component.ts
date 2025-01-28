@@ -50,18 +50,15 @@ export class RegisterComponent implements OnInit {
       delete requestData.isPersonalTrainer; // Rimuove il campo non necessario
 
       this.authService.register(requestData).subscribe({
-        next: () => {
-          this.successMessage = 'Registrazione completata con successo!';
-          this.errorMessage = null;
-
-          // Reindirizza al login dopo 2 secondi
+        next: (response) => {
+          this.successMessage = response.message; // Mostra il messaggio di successo
           setTimeout(() => {
             this.router.navigate(['/authentication/login']);
           }, 2000);
         },
         error: (err) => {
-          this.errorMessage = 'Errore durante la registrazione. Riprova.';
-          this.successMessage = null;
+          this.errorMessage =
+            err.error.message || 'Errore durante la registrazione. Riprova.';
           console.error(err);
         },
       });
