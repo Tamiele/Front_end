@@ -1,0 +1,124 @@
+<h2>Registrazione</h2>
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <!-- Username -->
+  <label for="username">Username</label>
+  <input
+    id="username"
+    type="text"
+    formControlName="username"
+    placeholder="Inserisci il tuo username"
+  />
+  <div
+    *ngIf="
+      registerForm.get('username')?.invalid &&
+      registerForm.get('username')?.touched
+    "
+    style="color: red"
+  >
+    L'username è obbligatorio (min. 3 caratteri).
+  </div>
+
+  <!-- Password -->
+  <label for="password">Password</label>
+  <input
+    id="password"
+    type="password"
+    formControlName="password"
+    placeholder="Inserisci la tua password"
+  />
+  <div
+    *ngIf="
+      registerForm.get('password')?.invalid &&
+      registerForm.get('password')?.touched
+    "
+    style="color: red"
+  >
+    La password è obbligatoria (min. 6 caratteri).
+  </div>
+
+  <!-- Email -->
+  <label for="email">Email</label>
+  <input
+    id="email"
+    type="email"
+    formControlName="email"
+    placeholder="Inserisci la tua email"
+  />
+  <div
+    *ngIf="
+      registerForm.get('email')?.invalid && registerForm.get('email')?.touched
+    "
+    style="color: red"
+  >
+    Email non valida.
+  </div>
+
+  <!-- Nome -->
+  <label for="nome">Nome</label>
+  <input
+    id="nome"
+    type="text"
+    formControlName="nome"
+    placeholder="Inserisci il tuo nome"
+  />
+  <div
+    *ngIf="
+      registerForm.get('nome')?.invalid && registerForm.get('nome')?.touched
+    "
+    style="color: red"
+  >
+    Il nome è obbligatorio.
+  </div>
+
+  <!-- Cognome -->
+  <label for="cognome">Cognome</label>
+  <input
+    id="cognome"
+    type="text"
+    formControlName="cognome"
+    placeholder="Inserisci il tuo cognome"
+  />
+  <div
+    *ngIf="
+      registerForm.get('cognome')?.invalid &&
+      registerForm.get('cognome')?.touched
+    "
+    style="color: red"
+  >
+    Il cognome è obbligatorio.
+  </div>
+
+  <!-- Data di nascita -->
+  <label for="dataDiNascita">Data di Nascita</label>
+  <input id="dataDiNascita" type="date" formControlName="dataDiNascita" />
+  <div
+    *ngIf="
+      registerForm.get('dataDiNascita')?.invalid &&
+      registerForm.get('dataDiNascita')?.touched
+    "
+    style="color: red"
+  >
+    La data di nascita è obbligatoria.
+  </div>
+
+  <!-- Ruolo -->
+  <label for="isPersonalTrainer">
+    <input
+      id="isPersonalTrainer"
+      type="checkbox"
+      formControlName="isPersonalTrainer"
+    />
+    Registrati come Personal Trainer
+  </label>
+
+  <!-- Pulsante di invio -->
+  <button type="submit" [disabled]="registerForm.invalid">Registrati</button>
+
+  <!-- Messaggi di errore/successo -->
+  <div *ngIf="errorMessage" style="color: red; margin-top: 10px">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" style="color: green; margin-top: 10px">
+    {{ successMessage }}
+  </div>
+</form>

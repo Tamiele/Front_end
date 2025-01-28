@@ -1,0 +1,44 @@
+<h2>Login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <!-- Username -->
+  <label for="username">Username</label>
+  <input
+    id="username"
+    type="text"
+    formControlName="username"
+    placeholder="Inserisci il tuo username"
+  />
+  <div
+    *ngIf="
+      loginForm.get('username')?.invalid && loginForm.get('username')?.touched
+    "
+    style="color: red"
+  >
+    Username richiesto.
+  </div>
+
+  <!-- Password -->
+  <label for="password">Password</label>
+  <input
+    id="password"
+    type="password"
+    formControlName="password"
+    placeholder="Inserisci la tua password"
+  />
+  <div
+    *ngIf="
+      loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+    "
+    style="color: red"
+  >
+    La password è obbligatoria (minimo 6 caratteri).
+  </div>
+
+  <!-- Pulsante di invio -->
+  <button type="submit" [disabled]="loginForm.invalid">Accedi</button>
+
+  <!-- Messaggio di errore -->
+  <div *ngIf="errorMessage" style="color: red; margin-top: 10px">
+    {{ errorMessage }}
+  </div>
+</form>
