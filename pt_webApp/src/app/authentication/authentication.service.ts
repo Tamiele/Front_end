@@ -19,7 +19,7 @@ export class AuthenticationService {
   loginUrl: string = environment.loginUrl;
 
   // Gestione stato autenticazione
-  private authSubject$ = new BehaviorSubject<iLoginResponse | null>(null);
+  authSubject$ = new BehaviorSubject<iLoginResponse | null>(null);
 
   // Observable per i dati utente
   user$: Observable<iUser | undefined> = this.authSubject$.asObservable().pipe(
@@ -58,14 +58,16 @@ export class AuthenticationService {
       .post<iLoginResponse>(this.loginUrl, authenticationData)
       .pipe(
         tap((accessData) => {
-          this.authSubject$.next(accessData);
+          if (!accessData.token) {
+            console.error('🚫 ERRORE: Nessun token ricevuto!');
+            return;
+          }
 
-          // Salva i dati di accesso nel localStorage
+          this.authSubject$.next(accessData);
           localStorage.setItem('accessData', JSON.stringify(accessData));
 
-          // Decodifica la data di scadenza del token
           const tokenDate = this.jwtHelper.getTokenExpirationDate(
-            accessData.accessToken
+            accessData.token
           );
 
           if (tokenDate) {
@@ -101,7 +103,7 @@ export class AuthenticationService {
     const accessData: iLoginResponse = JSON.parse(userJson);
 
     // Controlla se il token è scaduto
-    if (this.jwtHelper.isTokenExpired(accessData.accessToken)) {
+    if (this.jwtHelper.isTokenExpired(accessData.token)) {
       localStorage.removeItem('accessData');
       return;
     }
