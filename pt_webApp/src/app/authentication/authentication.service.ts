@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { iUser } from '../interfaces/i-user';
 import { iLoginRequest } from '../interfaces/i-login-request';
 import { iLoginResponse } from '../interfaces/i-login-response';
+import { iCliente } from '../interfaces/i-cliente';
+import { iPersonalTrainer } from '../interfaces/i-personal-trainer';
 
 @Injectable({
   providedIn: 'root',
@@ -21,22 +23,14 @@ export class AuthenticationService {
   // Gestione stato autenticazione
   authSubject$ = new BehaviorSubject<iLoginResponse | null>(null);
 
-  // Observable per i dati utente
-  user$: Observable<iUser | undefined> = this.authSubject$.asObservable().pipe(
-    tap((accessData) => (this.isLoggedIn = !!accessData)), // Aggiorna lo stato di login
-    map((accessData) => {
-      if (!accessData) return undefined; // Se non c'è accessData, restituisci undefined
+  // Observable per i dati utente loggato
 
-      // Mappa i dati di accessData in iUser
-      return {
-        username: accessData.username,
-        nome: accessData.nome,
-        cognome: accessData.cognome,
-        email: accessData.email,
-        dataDiNascita: accessData.dataDiNascita,
-      } as iUser;
-    })
-  );
+  private userSubject$ = new BehaviorSubject<
+    iPersonalTrainer | iCliente | null
+  >(null);
+
+  user$: Observable<iPersonalTrainer | iCliente | null> =
+    this.userSubject$.asObservable();
 
   // Observable per lo stato di login
   isLoggedIn$ = this.authSubject$.pipe(map((accessData) => !!accessData));
