@@ -50,8 +50,7 @@ export class RegisterComponent implements OnInit {
       delete requestData.isPersonalTrainer; // Rimuove il campo non necessario
 
       this.authService.register(requestData).subscribe({
-        next: (response) => {
-          this.successMessage = response.message; // Mostra il messaggio di successo
+        next: () => {
           setTimeout(() => {
             this.router.navigate(['/authentication/login']);
           }, 2000);
