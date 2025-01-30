@@ -10,6 +10,18 @@ const routes: Routes = [
         (m) => m.AuthenticationModule
       ),
   },
+  {
+    path: 'HomePt',
+    loadChildren: () =>
+      import('./home-pt/home-pt.module').then((m) => m.HomePtModule),
+  },
+  {
+    path: 'HomeClienti',
+    loadChildren: () =>
+      import('./home-clienti/home-clienti.module').then(
+        (m) => m.HomeClientiModule
+      ),
+  },
 ];
 
 @NgModule({

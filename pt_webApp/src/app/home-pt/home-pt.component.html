@@ -1,0 +1,42 @@
+<div class="d-flex">
+  <!-- Sidebar -->
+  <app-sidebar-pt></app-sidebar-pt>
+
+  <!-- Contenuto principale -->
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <!-- Menu a tendina per i clienti -->
+      <div class="dropdown">
+        <button
+          class="btn btn-primary dropdown-toggle"
+          type="button"
+          id="clientDropdown"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          I miei clienti
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="clientDropdown">
+          <li *ngFor="let cliente of clienti">
+            <a class="dropdown-item" href="#"
+              >{{ cliente.nome }} {{ cliente.cognome }}</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Messaggio di benvenuto -->
+      <div class="welcome-message">
+        <span
+          >👋 Benvenuto, <strong>{{ personalTrainer?.username }}</strong
+          >!</span
+        >
+      </div>
+    </div>
+
+    <!-- Contenuto principale -->
+    <div class="content mt-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

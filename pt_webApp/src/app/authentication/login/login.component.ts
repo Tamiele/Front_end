@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe({
         next: () => {
           // Reindirizza l'utente dopo il login
-          this.router.navigate(['/']); // Cambia con la tua rotta
+          this.router.navigate(['/HomePt']); // Cambia con la tua rotta
         },
         error: (err) => {
           // Gestione errori

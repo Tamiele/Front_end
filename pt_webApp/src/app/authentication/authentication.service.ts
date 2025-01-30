@@ -19,34 +19,22 @@ export class AuthenticationService {
   // URL delle API
   registerUrl: string = environment.registerUrl;
   loginUrl: string = environment.loginUrl;
+  detailPtUrl: string = environment.detailPtUrl;
 
   // Gestione stato autenticazione
   authSubject$ = new BehaviorSubject<iLoginResponse | null>(null);
-
-  // Observable per i dati utente loggato
-
-  private userSubject$ = new BehaviorSubject<
-    iPersonalTrainer | iCliente | null
-  >(null);
-
-  user$: Observable<iPersonalTrainer | iCliente | null> =
-    this.userSubject$.asObservable();
-
-  // Observable per lo stato di login
   isLoggedIn$ = this.authSubject$.pipe(map((accessData) => !!accessData));
-
-  isLoggedIn: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {
     this.restoreUser();
   }
 
-  // Metodo per la registrazione
+  /** Metodo per la registrazione */
   register(newUser: Partial<iUser>): Observable<iLoginResponse> {
     return this.http.post<iLoginResponse>(this.registerUrl, newUser);
   }
 
-  // Metodo per il login
+  /** Metodo per il login */
   login(authenticationData: iLoginRequest): Observable<iLoginResponse> {
     return this.http
       .post<iLoginResponse>(this.loginUrl, authenticationData)
@@ -63,7 +51,6 @@ export class AuthenticationService {
           const tokenDate = this.jwtHelper.getTokenExpirationDate(
             accessData.token
           );
-
           if (tokenDate) {
             this.autoLogout(tokenDate);
           }
@@ -71,7 +58,7 @@ export class AuthenticationService {
       );
   }
 
-  // Metodo per il logout
+  /** Metodo per il logout */
   logout(): void {
     this.authSubject$.next(null);
     localStorage.removeItem('accessData');
@@ -80,28 +67,44 @@ export class AuthenticationService {
 
   private autoLogoutTimer: any;
 
-  // Timer per il logout automatico
-  autoLogout(tokenDate: Date): void {
+  /** Timer per il logout automatico */
+  private autoLogout(tokenDate: Date): void {
     const tokenMs = tokenDate.getTime() - new Date().getTime();
-
-    this.autoLogoutTimer = setTimeout(() => {
-      this.logout();
-    }, tokenMs);
+    this.autoLogoutTimer = setTimeout(() => this.logout(), tokenMs);
   }
 
-  // Metodo per ripristinare l'utente al caricamento dell'app
-  private restoreUser(): void {
+  /** Metodo per ripristinare l'utente al caricamento dell'app */
+  restoreUser(): void {
     const userJson = localStorage.getItem('accessData');
-    if (!userJson) return;
+    console.log('🔍 Recupero utente da localStorage:', userJson);
+
+    if (!userJson) {
+      console.log('❌ Nessun dato utente salvato.');
+      return;
+    }
 
     const accessData: iLoginResponse = JSON.parse(userJson);
+    console.log('🔍 Dati di accesso recuperati:', accessData);
 
-    // Controlla se il token è scaduto
     if (this.jwtHelper.isTokenExpired(accessData.token)) {
+      console.log('❌ Token scaduto, rimuovo dati utente.');
       localStorage.removeItem('accessData');
       return;
     }
 
+    console.log('✅ Token valido, ripristino i dati utente...');
     this.authSubject$.next(accessData);
   }
+
+  /** Metodo per ottenere i dati dell'utente loggato */
+  getMe(): Observable<iPersonalTrainer | iCliente> {
+    return this.http.get<iPersonalTrainer | iCliente>(`${this.detailPtUrl}/me`);
+  }
+
+  /** Metodo per ottenere l'utente attuale direttamente dall'observable */
+  user$: Observable<iUser | undefined> = this.authSubject$.asObservable().pipe(
+    tap((accessData) => (this.isLoggedIn = !!accessData)),
+    map((accessData) => accessData?.user as iPersonalTrainer | iCliente)
+  );
+  isLoggedIn: boolean = false;
 }
