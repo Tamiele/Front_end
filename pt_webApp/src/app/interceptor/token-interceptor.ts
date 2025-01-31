@@ -17,26 +17,16 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const accessData = this.authSvc.authSubject$.getValue();
-    console.log('Token recuperato:', accessData?.token); // 👀 Stampa il token per debug
-
-    if (!accessData || !accessData.token) {
-      console.warn(
-        'Nessun token trovato, richiesta inviata senza Authorization'
-      );
+    if (!accessData) {
       return next.handle(request);
     }
 
     const newRequest = request.clone({
-      headers: request.headers.set(
+      headers: request.headers.append(
         'Authorization',
         `Bearer ${accessData.token}`
       ),
     });
-
-    console.log(
-      'Nuova richiesta con header:',
-      newRequest.headers.get('Authorization')
-    ); // 👀 Verifica se il token viene aggiunto
 
     return next.handle(newRequest);
   }

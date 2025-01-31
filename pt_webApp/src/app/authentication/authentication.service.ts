@@ -19,7 +19,6 @@ export class AuthenticationService {
   // URL delle API
   registerUrl: string = environment.registerUrl;
   loginUrl: string = environment.loginUrl;
-  detailPtUrl: string = environment.detailPtUrl;
 
   // Gestione stato autenticazione
   authSubject$ = new BehaviorSubject<iLoginResponse | null>(null);
@@ -94,11 +93,6 @@ export class AuthenticationService {
 
     console.log('✅ Token valido, ripristino i dati utente...');
     this.authSubject$.next(accessData);
-  }
-
-  /** Metodo per ottenere i dati dell'utente loggato */
-  getMe(): Observable<iPersonalTrainer | iCliente> {
-    return this.http.get<iPersonalTrainer | iCliente>(`${this.detailPtUrl}/me`);
   }
 
   /** Metodo per ottenere l'utente attuale direttamente dall'observable */
