@@ -75,23 +75,18 @@ export class AuthenticationService {
   /** Metodo per ripristinare l'utente al caricamento dell'app */
   restoreUser(): void {
     const userJson = localStorage.getItem('accessData');
-    console.log('🔍 Recupero utente da localStorage:', userJson);
 
     if (!userJson) {
-      console.log('❌ Nessun dato utente salvato.');
       return;
     }
 
     const accessData: iLoginResponse = JSON.parse(userJson);
-    console.log('🔍 Dati di accesso recuperati:', accessData);
 
     if (this.jwtHelper.isTokenExpired(accessData.token)) {
-      console.log('❌ Token scaduto, rimuovo dati utente.');
       localStorage.removeItem('accessData');
       return;
     }
 
-    console.log('✅ Token valido, ripristino i dati utente...');
     this.authSubject$.next(accessData);
   }
 

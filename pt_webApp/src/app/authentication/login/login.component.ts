@@ -28,12 +28,19 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
-        next: () => {
-          // Reindirizza l'utente dopo il login
-          this.router.navigate(['/HomePt']); // Cambia con la tua rotta
+        next: (user) => {
+          // Verifica che l'utente sia definito e abbia dei ruoli
+          if (user && user.user.roles) {
+            if (user.user.roles.includes('ROLE_PERSONAL_TRAINER')) {
+              this.router.navigate(['/HomePt']); // Rotta per Personal Trainer
+            } else {
+              this.router.navigate(['/Clienti']); // Rotta per Clienti o altro ruolo
+            }
+          } else {
+            this.errorMessage = 'Errore nel recupero del ruolo utente.';
+          }
         },
         error: (err) => {
-          // Gestione errori
           this.errorMessage = 'Credenziali non valide. Riprova.';
           console.error(err);
         },

@@ -1,18 +1,49 @@
-.container-fluid {
+// Sidebar con altezza 100% e larghezza fissa
+.sidebar {
+  position: fixed;
+}
+
+// Contenitore principale
+.content-wrapper {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  overflow-x: hidden;
+  position: relative;
+}
+
+// Sfondo con immagine
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/foto-home.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   padding: 20px;
+  color: white;
+  backdrop-filter: blur(5px); // Effetto sfocato per migliorare la leggibilità
 }
 
+// Stile per il messaggio di benvenuto
 .welcome-message {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+// Stile per la descrizione
+.description p {
   font-size: 1.2rem;
-  color: #333;
-}
-
-.dropdown-menu {
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.content {
-  margin-top: 20px;
-  padding-left: 20px;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  margin: auto;
 }

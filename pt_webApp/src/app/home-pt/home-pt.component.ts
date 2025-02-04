@@ -40,21 +40,9 @@ export class HomePtComponent implements OnInit {
   getAll(): void {
     this.homePt.getMyClients(this.currentPage).subscribe((pageClienti) => {
       this.clienti = pageClienti.content;
+      this.totalClienti = pageClienti.totalElements;
       console.log(this.clienti);
+      console.log(this.totalClienti);
     });
-  }
-
-  nextPage(): void {
-    if ((this.page + 1) * this.size < this.totalClienti) {
-      this.page++;
-      this.getAll();
-    }
-  }
-
-  prevPage(): void {
-    if (this.page > 0) {
-      this.page--;
-      this.getAll();
-    }
   }
 }

@@ -41,13 +41,12 @@ export class RegisterComponent implements OnInit {
         ? ['ROLE_PERSONAL_TRAINER']
         : ['ROLE_USER'];
 
-      // Prepara i dati da inviare al server
       const requestData = {
         ...formData,
-        roles, // Aggiunge il ruolo dinamico
+        roles,
       };
 
-      delete requestData.isPersonalTrainer; // Rimuove il campo non necessario
+      delete requestData.isPersonalTrainer;
 
       this.authService.register(requestData).subscribe({
         next: () => {
