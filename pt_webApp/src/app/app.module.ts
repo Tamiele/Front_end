@@ -11,10 +11,11 @@ import {
 } from '@angular/common/http';
 import { TokenInterceptor } from './interceptor/token-interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, NgbModule],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, SharedModule],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
     {

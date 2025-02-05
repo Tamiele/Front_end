@@ -1,36 +1,97 @@
-<nav class="sidebar">
-  <div class="position-sticky">
-    <ul class="nav flex-column text-white">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/HomePt" routerLinkActive="active">
-          <i class="bi bi-house-door"></i> Home
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/clienti" routerLinkActive="active">
-          <i class="bi bi-people"></i> Clienti
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/programmi" routerLinkActive="active">
-          <i class="bi bi-calendar"></i> Programmi
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/esercizi" routerLinkActive="active">
-          <i class="bi bi-list-check"></i> Esercizi
-        </a>
-      </li>
+<nav class="sidebar text-center">
+  <div class="position-sticky" *ngIf="hasRole('ROLE_PERSONAL_TRAINER')">
+    <!-- Logo -->
+    <div class="py-3 rounded-5 mb-3 logo-container">
+      <img
+        src="/Logo.png"
+        alt="Logo"
+        class="img-fluid rounded-4"
+        style="max-width: 150px"
+      />
+    </div>
 
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          routerLink="/impostazioni"
-          routerLinkActive="active"
-        >
-          <i class="bi bi-gear"></i> Impostazioni
-        </a>
-      </li>
-    </ul>
+    <div class="mx-4">
+      <ul class="nav flex-column text-white">
+        <li class="nav-item mb-2">
+          <a class="nav-link" routerLink="/HomePt" routerLinkActive="active">
+            <i class="bi bi-house-door"></i> Home
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link" routerLink="/clienti" routerLinkActive="active">
+            <i class="bi bi-people"></i> Clienti
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link" routerLink="/programmi" routerLinkActive="active">
+            <i class="bi bi-calendar"></i> Programmi
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link" routerLink="/esercizi" routerLinkActive="active">
+            <i class="bi bi-list-check"></i> Esercizi
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a
+            class="nav-link"
+            routerLink="/impostazioni"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-gear"></i> Il Mio Profilo
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Menu cliente -->
+  <div class="position-sticky" *ngIf="hasRole('ROLE_USER')">
+    <!-- Logo -->
+    <div class="py-3 rounded-5 mb-3 logo-container">
+      <img
+        src="/Logo.png"
+        alt="Logo"
+        class="img-fluid rounded-4"
+        style="max-width: 150px"
+      />
+    </div>
+
+    <div class="mx-4">
+      <ul class="nav flex-column text-white">
+        <li class="nav-item mb-2">
+          <a class="nav-link" routerLink="/" routerLinkActive="active">
+            <i class="bi bi-house-door"></i> Home
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a
+            class="nav-link"
+            routerLink="/allenamenti"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-calendar"></i> Allenamenti
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a
+            class="nav-link"
+            routerLink="/nutrizione"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-list-check"></i> Nutrizione
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a
+            class="nav-link"
+            routerLink="/impostazioni"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-gear"></i> Il Mio Profilo
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

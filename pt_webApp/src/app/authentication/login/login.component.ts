@@ -29,12 +29,11 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (user) => {
-          // Verifica che l'utente sia definito e abbia dei ruoli
           if (user && user.user.roles) {
             if (user.user.roles.includes('ROLE_PERSONAL_TRAINER')) {
               this.router.navigate(['/HomePt']); // Rotta per Personal Trainer
             } else {
-              this.router.navigate(['/Clienti']); // Rotta per Clienti o altro ruolo
+              this.router.navigate(['/HomeClienti']); // Rotta per Clienti o altro ruolo
             }
           } else {
             this.errorMessage = 'Errore nel recupero del ruolo utente.';

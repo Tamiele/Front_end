@@ -41,8 +41,6 @@ export class HomePtComponent implements OnInit {
     this.homePt.getMyClients(this.currentPage).subscribe((pageClienti) => {
       this.clienti = pageClienti.content;
       this.totalClienti = pageClienti.totalElements;
-      console.log(this.clienti);
-      console.log(this.totalClienti);
     });
   }
 }
