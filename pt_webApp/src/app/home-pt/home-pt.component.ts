@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { iPersonalTrainer } from '../interfaces/i-personal-trainer';
 import { AuthenticationService } from '../authentication/authentication.service';
-import { iCliente } from '../interfaces/i-cliente';
+
 import { HomePtService } from './home-pt.service';
 
 @Component({
@@ -12,35 +12,4 @@ import { HomePtService } from './home-pt.service';
 })
 export class HomePtComponent {
   personalTrainer: iPersonalTrainer | null = null;
-  clienti: iCliente[] = [];
-  totalClienti: number = 0;
-  currentPage: number = 0;
-
-  page: number = 0;
-  size: number = 10;
-
-  constructor(
-    private authService: AuthenticationService,
-    private homePt: HomePtService
-  ) {}
-
-  // ngOnInit(): void {
-  //   this.authService.user$.subscribe((user) => {
-  //     if (
-  //       user &&
-  //       'roles' in user &&
-  //       user.roles.includes('ROLE_PERSONAL_TRAINER')
-  //     ) {
-  //       this.personalTrainer = user as iPersonalTrainer;
-  //     }
-  //     this.getAll();
-  //   });
-  // }
-
-  // getAll(): void {
-  //   this.homePt.getMyClients(this.currentPage).subscribe((pageClienti) => {
-  //     this.clienti = pageClienti.content;
-  //     this.totalClienti = pageClienti.totalElements;
-  //   });
-  // }
 }

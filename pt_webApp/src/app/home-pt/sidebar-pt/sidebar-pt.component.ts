@@ -12,10 +12,7 @@ export class SidebarPtComponent implements OnInit, OnDestroy {
   userRoles: string[] = [];
   private userSubscription!: Subscription;
 
-  constructor(
-    private authService: AuthenticationService,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthenticationService) {}
 
   ngOnInit(): void {
     this.userSubscription = this.authService.authSubject$.subscribe((user) => {
@@ -27,8 +24,8 @@ export class SidebarPtComponent implements OnInit, OnDestroy {
     return this.userRoles.includes(role);
   }
 
-  navigateTo(route: string) {
-    this.router.navigate([route]);
+  logOut() {
+    return this.authService.logout();
   }
 
   ngOnDestroy() {
