@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthenticationService } from '../../authentication/authentication.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-pt',
@@ -11,7 +12,10 @@ export class SidebarPtComponent implements OnInit, OnDestroy {
   userRoles: string[] = [];
   private userSubscription!: Subscription;
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.userSubscription = this.authService.authSubject$.subscribe((user) => {
@@ -21,6 +25,10 @@ export class SidebarPtComponent implements OnInit, OnDestroy {
 
   hasRole(role: string): boolean {
     return this.userRoles.includes(role);
+  }
+
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 
   ngOnDestroy() {

@@ -1,0 +1,85 @@
+// Sidebar con altezza 100% e larghezza fissa
+.sidebar {
+  position: fixed;
+}
+
+// Contenitore principale
+.content-wrapper {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  overflow-x: hidden;
+  position: relative;
+}
+
+// Sfondo con immagine
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/body.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+
+  backdrop-filter: blur(5px);
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.description p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  margin: auto;
+}
+
+.description {
+  position: relative;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+/* Card */
+.cardCustom {
+  width: 250px;
+  height: 100px; /* Altezza ridotta per evitare spazio inutile */
+  background: rgba(38, 38, 38, 0.712);
+  box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.333);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* Parte superiore con l'immagine */
+.imge {
+  width: 93%;
+  height: 83px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Nome Utente */
+.UserName {
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(255, 94, 0);
+  font-size: 1.4rem;
+  font-weight: bold;
+}

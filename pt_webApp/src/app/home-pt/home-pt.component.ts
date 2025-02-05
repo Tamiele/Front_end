@@ -10,7 +10,7 @@ import { HomePtService } from './home-pt.service';
   templateUrl: './home-pt.component.html',
   styleUrls: ['./home-pt.component.scss'],
 })
-export class HomePtComponent implements OnInit {
+export class HomePtComponent {
   personalTrainer: iPersonalTrainer | null = null;
   clienti: iCliente[] = [];
   totalClienti: number = 0;
@@ -24,23 +24,23 @@ export class HomePtComponent implements OnInit {
     private homePt: HomePtService
   ) {}
 
-  ngOnInit(): void {
-    this.authService.user$.subscribe((user) => {
-      if (
-        user &&
-        'roles' in user &&
-        user.roles.includes('ROLE_PERSONAL_TRAINER')
-      ) {
-        this.personalTrainer = user as iPersonalTrainer;
-      }
-      this.getAll();
-    });
-  }
+  // ngOnInit(): void {
+  //   this.authService.user$.subscribe((user) => {
+  //     if (
+  //       user &&
+  //       'roles' in user &&
+  //       user.roles.includes('ROLE_PERSONAL_TRAINER')
+  //     ) {
+  //       this.personalTrainer = user as iPersonalTrainer;
+  //     }
+  //     this.getAll();
+  //   });
+  // }
 
-  getAll(): void {
-    this.homePt.getMyClients(this.currentPage).subscribe((pageClienti) => {
-      this.clienti = pageClienti.content;
-      this.totalClienti = pageClienti.totalElements;
-    });
-  }
+  // getAll(): void {
+  //   this.homePt.getMyClients(this.currentPage).subscribe((pageClienti) => {
+  //     this.clienti = pageClienti.content;
+  //     this.totalClienti = pageClienti.totalElements;
+  //   });
+  // }
 }
