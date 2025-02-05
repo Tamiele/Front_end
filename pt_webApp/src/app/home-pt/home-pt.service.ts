@@ -13,11 +13,18 @@ export class HomePtService {
 
   private clientFavPtUrl: string = environment.clientFavPtUrl;
 
+  private removeFavPt: string = environment.removeFavPt;
+
   getMyClients(page: number): Observable<iPageClienti> {
     let params = new HttpParams()
       .set('page', page.toString())
       .set('size', '12');
 
     return this.http.get<iPageClienti>(this.clientFavPtUrl, { params });
+  }
+
+  removeClient(clienteId: number): Observable<void> {
+    const url = `${this.removeFavPt}/${clienteId}`;
+    return this.http.delete<void>(url);
   }
 }

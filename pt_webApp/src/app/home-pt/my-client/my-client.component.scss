@@ -1,0 +1,36 @@
+/* Card */
+.cardCustom {
+  width: 230px;
+  height: 100px;
+  background: rgba(38, 38, 38, 0.712);
+  box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.333);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* Parte superiore con l'immagine */
+.imge {
+  width: 93%;
+  height: 83px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Nome Utente */
+.UserName {
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(255, 94, 0);
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.colorButton {
+  background-color: #9f3815;
+}
