@@ -10,8 +10,7 @@
           id="username"
           type="text"
           formControlName="username"
-          placeholder="Inserisci il tuo username"
-          class="form-control"
+          class="global-form-control"
           [ngClass]="{
             'is-invalid':
               loginForm.get('username')?.invalid &&
@@ -35,8 +34,7 @@
           id="password"
           type="password"
           formControlName="password"
-          placeholder="Inserisci la tua password"
-          class="form-control"
+          class="global-form-control"
           [ngClass]="{
             'is-invalid':
               loginForm.get('password')?.invalid &&

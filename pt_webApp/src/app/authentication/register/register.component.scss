@@ -63,22 +63,6 @@ label {
   font-weight: bold;
 }
 
-/* Stile per i campi input */
-.form-control {
-  width: 100%;
-  padding: 12px;
-  border-radius: 5px;
-  border: 2px solid transparent;
-  transition: all 0.3s ease-in-out;
-  background: #222;
-  color: #fff;
-}
-
-.form-control:focus {
-  border-color: #9f3815;
-  box-shadow: 0 0 10px rgba(159, 56, 21, 0.7);
-}
-
 /* Errori */
 .invalid-feedback {
   color: #ff4b4b;

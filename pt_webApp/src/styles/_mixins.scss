@@ -1,0 +1,30 @@
+// ✨ Effetto Glow sugli input e pulsanti
+@mixin glow-effect {
+  transition: all 0.3s ease-in-out;
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 10px rgba(159, 56, 21, 0.7);
+  }
+}
+
+// 🎨 Stile per i pulsanti
+@mixin button-style {
+  padding: $button-padding;
+  background: $primary-color;
+  color: $text-color;
+  border: none;
+  border-radius: $border-radius;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background: $secondary-color;
+    box-shadow: 0 0 10px rgba(255, 75, 75, 0.8);
+  }
+
+  &:disabled {
+    background: #444;
+    cursor: not-allowed;
+  }
+}

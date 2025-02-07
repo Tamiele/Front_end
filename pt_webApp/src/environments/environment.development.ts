@@ -5,6 +5,8 @@ export const environment = {
   //personalTrainer
   clientFavPtUrl: 'http://localhost:8080/api/clienti/myClient',
   removeFavPt: 'http://localhost:8080/api/trainer/remove-client',
+  searchClient: 'http://localhost:8080/api/clienti/search-clients-byTrainer',
+  addClient: 'http://localhost:8080/api/trainer/assign-client',
 
   //Clienti
 };

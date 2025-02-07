@@ -1,17 +1,12 @@
-/* Card */
-.cardCustom {
-  width: 230px;
-  height: 100px;
-  background: rgba(38, 38, 38, 0.712);
-  box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.333);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
+/* Contenitore principale */
+.content-wrapper {
+  padding: 20px;
 }
 
-/* Parte superiore con l'immagine */
+.bg-page {
+  background-color: #131313;
+}
+/* Parte superiore con il testo */
 .imge {
   width: 93%;
   height: 83px;
@@ -26,11 +21,71 @@
 .UserName {
   padding: 5px;
   border-radius: 5px;
-  color: rgb(255, 94, 0);
+  color: #ff5e00;
   font-size: 1.4rem;
   font-weight: bold;
+  text-align: center;
 }
 
-.colorButton {
-  background-color: #9f3815;
+/* Box di ricerca cliente */
+.search-client-box {
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.507);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(159, 56, 21, 0.7);
+  text-align: center;
+}
+
+.search-title {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Card Cliente Trovato */
+.found-client-card {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(159, 56, 21, 0.7);
+  color: white;
+  text-align: start;
+}
+
+.found-client-card p {
+  margin: 5px 0;
+}
+
+/* Messaggio di errore */
+.notification-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 75, 75, 0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(255, 75, 75, 0.5);
+  animation: fadeInOut 4s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 }

@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
       if (
         user &&
         'roles' in user &&
-        user.roles.includes('ROLE_PERSONAL_TRAINER')
+        user.roles?.includes('ROLE_PERSONAL_TRAINER')
       ) {
         this.personalTrainer = user as iPersonalTrainer;
       }
