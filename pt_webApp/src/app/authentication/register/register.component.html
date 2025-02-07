@@ -8,13 +8,13 @@
       (ngSubmit)="register()"
       class="register-form"
     >
+      <!-- Username -->
       <div class="form-group">
-        <label for="username"></label>
+        <label for="username">Username</label>
         <input
           id="username"
           type="text"
           formControlName="username"
-          placeholder="Inserisci il tuo username"
           class="form-control"
           [ngClass]="{
             'is-invalid':
@@ -33,13 +33,13 @@
         </div>
       </div>
 
+      <!-- Password -->
       <div class="form-group">
-        <label for="password"></label>
+        <label for="password">Password</label>
         <input
           id="password"
           type="password"
           formControlName="password"
-          placeholder="Inserisci la tua password"
           class="form-control"
           [ngClass]="{
             'is-invalid':
@@ -58,13 +58,13 @@
         </div>
       </div>
 
+      <!-- Email -->
       <div class="form-group">
-        <label for="email"></label>
+        <label for="email">Email</label>
         <input
           id="email"
           type="email"
           formControlName="email"
-          placeholder="Inserisci la tua email"
           class="form-control"
           [ngClass]="{
             'is-invalid':
@@ -83,13 +83,13 @@
         </div>
       </div>
 
+      <!-- Nome -->
       <div class="form-group">
-        <label for="nome"></label>
+        <label for="nome">Nome</label>
         <input
           id="nome"
           type="text"
           formControlName="nome"
-          placeholder="Inserisci il tuo nome"
           class="form-control"
           [ngClass]="{
             'is-invalid':
@@ -108,13 +108,13 @@
         </div>
       </div>
 
+      <!-- Cognome -->
       <div class="form-group">
-        <label for="cognome"></label>
+        <label for="cognome">Cognome</label>
         <input
           id="cognome"
           type="text"
           formControlName="cognome"
-          placeholder="Inserisci il tuo cognome"
           class="form-control"
           [ngClass]="{
             'is-invalid':
@@ -133,8 +133,9 @@
         </div>
       </div>
 
+      <!-- Data di nascita -->
       <div class="form-group">
-        <label for="dataDiNascita"></label>
+        <label for="dataDiNascita">Data di Nascita</label>
         <input
           id="dataDiNascita"
           type="date"
@@ -157,17 +158,16 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="isPersonalTrainer">
-          <input
-            id="isPersonalTrainer"
-            type="checkbox"
-            formControlName="isPersonalTrainer"
-          />
-          Registrati come Personal Trainer
+      <!-- Toggle switch per Personal Trainer -->
+      <div class="form-group toggle-container my-2">
+        <span>Registrati come Personal Trainer</span>
+        <label class="switch">
+          <input type="checkbox" formControlName="isPersonalTrainer" />
+          <span class="slider"></span>
         </label>
       </div>
 
+      <!-- Pulsante di registrazione -->
       <button
         class="btn-register"
         type="submit"
@@ -176,6 +176,7 @@
         Registrati
       </button>
 
+      <!-- Messaggi di errore/successo -->
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
@@ -184,6 +185,7 @@
       </div>
     </form>
 
+    <!-- Link per il login -->
     <div class="login-link">
       <p>
         Hai già un account? <a routerLink="/authentication/login">Accedi qui</a>

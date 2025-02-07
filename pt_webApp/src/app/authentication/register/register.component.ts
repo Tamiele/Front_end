@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
-import { iUser } from '../../interfaces/i-user';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +23,15 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '^(?!.*\\.\\.)[a-zA-Z0-9._%+-]+@(gmail\\.com|hotmail\\.com|hotmail\\.it|virgilio\\.it|yahoo\\.com|yahoo\\.it|outlook\\.com|outlook\\.it|live\\.com|live\\.it|icloud\\.com|libero\\.it|fastwebnet\\.it|tiscali\\.it|aruba\\.it|alice\\.it|tim\\.it)$'
+          ),
+        ],
+      ],
       nome: ['', [Validators.required]],
       cognome: ['', [Validators.required]],
       dataDiNascita: ['', [Validators.required]],
