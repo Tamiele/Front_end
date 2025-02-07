@@ -1,124 +1,193 @@
-<h2>Registrazione</h2>
-<form [formGroup]="registerForm" (ngSubmit)="register()">
-  <!-- Username -->
-  <label for="username">Username</label>
-  <input
-    id="username"
-    type="text"
-    formControlName="username"
-    placeholder="Inserisci il tuo username"
-  />
-  <div
-    *ngIf="
-      registerForm.get('username')?.invalid &&
-      registerForm.get('username')?.touched
-    "
-    style="color: red"
-  >
-    L'username è obbligatorio (min. 3 caratteri).
-  </div>
+<div class="register-container">
+  <div class="register-box">
+    <h2 class="register-title">Crea il tuo Account</h2>
+    <p class="register-subtitle">Inizia il tuo percorso fitness oggi stesso!</p>
 
-  <!-- Password -->
-  <label for="password">Password</label>
-  <input
-    id="password"
-    type="password"
-    formControlName="password"
-    placeholder="Inserisci la tua password"
-  />
-  <div
-    *ngIf="
-      registerForm.get('password')?.invalid &&
-      registerForm.get('password')?.touched
-    "
-    style="color: red"
-  >
-    La password è obbligatoria (min. 6 caratteri).
-  </div>
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="register()"
+      class="register-form"
+    >
+      <div class="form-group">
+        <label for="username"></label>
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          placeholder="Inserisci il tuo username"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              registerForm.get('username')?.invalid &&
+              registerForm.get('username')?.touched
+          }"
+        />
+        <div
+          *ngIf="
+            registerForm.get('username')?.invalid &&
+            registerForm.get('username')?.touched
+          "
+          class="invalid-feedback"
+        >
+          L'username è obbligatorio (min. 3 caratteri).
+        </div>
+      </div>
 
-  <!-- Email -->
-  <label for="email">Email</label>
-  <input
-    id="email"
-    type="email"
-    formControlName="email"
-    placeholder="Inserisci la tua email"
-  />
-  <div
-    *ngIf="
-      registerForm.get('email')?.invalid && registerForm.get('email')?.touched
-    "
-    style="color: red"
-  >
-    Email non valida.
-  </div>
+      <div class="form-group">
+        <label for="password"></label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Inserisci la tua password"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              registerForm.get('password')?.invalid &&
+              registerForm.get('password')?.touched
+          }"
+        />
+        <div
+          *ngIf="
+            registerForm.get('password')?.invalid &&
+            registerForm.get('password')?.touched
+          "
+          class="invalid-feedback"
+        >
+          La password è obbligatoria (min. 6 caratteri).
+        </div>
+      </div>
 
-  <!-- Nome -->
-  <label for="nome">Nome</label>
-  <input
-    id="nome"
-    type="text"
-    formControlName="nome"
-    placeholder="Inserisci il tuo nome"
-  />
-  <div
-    *ngIf="
-      registerForm.get('nome')?.invalid && registerForm.get('nome')?.touched
-    "
-    style="color: red"
-  >
-    Il nome è obbligatorio.
-  </div>
+      <div class="form-group">
+        <label for="email"></label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="Inserisci la tua email"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              registerForm.get('email')?.invalid &&
+              registerForm.get('email')?.touched
+          }"
+        />
+        <div
+          *ngIf="
+            registerForm.get('email')?.invalid &&
+            registerForm.get('email')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Email non valida.
+        </div>
+      </div>
 
-  <!-- Cognome -->
-  <label for="cognome">Cognome</label>
-  <input
-    id="cognome"
-    type="text"
-    formControlName="cognome"
-    placeholder="Inserisci il tuo cognome"
-  />
-  <div
-    *ngIf="
-      registerForm.get('cognome')?.invalid &&
-      registerForm.get('cognome')?.touched
-    "
-    style="color: red"
-  >
-    Il cognome è obbligatorio.
-  </div>
+      <div class="form-group">
+        <label for="nome"></label>
+        <input
+          id="nome"
+          type="text"
+          formControlName="nome"
+          placeholder="Inserisci il tuo nome"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              registerForm.get('nome')?.invalid &&
+              registerForm.get('nome')?.touched
+          }"
+        />
+        <div
+          *ngIf="
+            registerForm.get('nome')?.invalid &&
+            registerForm.get('nome')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Il nome è obbligatorio.
+        </div>
+      </div>
 
-  <!-- Data di nascita -->
-  <label for="dataDiNascita">Data di Nascita</label>
-  <input id="dataDiNascita" type="date" formControlName="dataDiNascita" />
-  <div
-    *ngIf="
-      registerForm.get('dataDiNascita')?.invalid &&
-      registerForm.get('dataDiNascita')?.touched
-    "
-    style="color: red"
-  >
-    La data di nascita è obbligatoria.
-  </div>
+      <div class="form-group">
+        <label for="cognome"></label>
+        <input
+          id="cognome"
+          type="text"
+          formControlName="cognome"
+          placeholder="Inserisci il tuo cognome"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              registerForm.get('cognome')?.invalid &&
+              registerForm.get('cognome')?.touched
+          }"
+        />
+        <div
+          *ngIf="
+            registerForm.get('cognome')?.invalid &&
+            registerForm.get('cognome')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Il cognome è obbligatorio.
+        </div>
+      </div>
 
-  <!-- Ruolo -->
-  <label for="isPersonalTrainer">
-    <input
-      id="isPersonalTrainer"
-      type="checkbox"
-      formControlName="isPersonalTrainer"
-    />
-    Registrati come Personal Trainer
-  </label>
+      <div class="form-group">
+        <label for="dataDiNascita"></label>
+        <input
+          id="dataDiNascita"
+          type="date"
+          formControlName="dataDiNascita"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              registerForm.get('dataDiNascita')?.invalid &&
+              registerForm.get('dataDiNascita')?.touched
+          }"
+        />
+        <div
+          *ngIf="
+            registerForm.get('dataDiNascita')?.invalid &&
+            registerForm.get('dataDiNascita')?.touched
+          "
+          class="invalid-feedback"
+        >
+          La data di nascita è obbligatoria.
+        </div>
+      </div>
 
-  <!-- Pulsante di invio -->
-  <button type="submit" [disabled]="registerForm.invalid">Registrati</button>
+      <div class="form-group">
+        <label for="isPersonalTrainer">
+          <input
+            id="isPersonalTrainer"
+            type="checkbox"
+            formControlName="isPersonalTrainer"
+          />
+          Registrati come Personal Trainer
+        </label>
+      </div>
 
-  <!-- Messaggi di errore/successo -->
-  <div *ngIf="errorMessage" style="color: red; margin-top: 10px">
-    {{ errorMessage }}
+      <button
+        class="btn-register"
+        type="submit"
+        [disabled]="registerForm.invalid"
+      >
+        Registrati
+      </button>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+    </form>
+
+    <div class="login-link">
+      <p>
+        Hai già un account? <a routerLink="/authentication/login">Accedi qui</a>
+      </p>
+    </div>
   </div>
-  <div *ngIf="successMessage" style="color: green; margin-top: 10px">
-    {{ successMessage }}
-  </div>
-</form>
+</div>
