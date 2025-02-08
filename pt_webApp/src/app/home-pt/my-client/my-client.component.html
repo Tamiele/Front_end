@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <!-- Card per Ricerca e Aggiunta Cliente -->
+      <!-- Card per Ricerca  Cliente -->
       <div class="col-12 col-md-6 d-flex flex-column">
         <div class="search-client-box">
           <h3 class="search-title">Cerca un Cliente</h3>
@@ -44,6 +44,11 @@
 
         <!-- Card che appare se il cliente è stato trovato -->
         <div *ngIf="searchedClient" class="found-client-card mt-3">
+          <div class="d-flex justify-content-end align-items-center">
+            <button class="btn-close-card" (click)="closeSearchedClient()">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
           <p><strong>Nome:</strong> {{ searchedClient.nome }}</p>
           <p><strong>Cognome:</strong> {{ searchedClient.cognome }}</p>
           <p><strong>Username:</strong> {{ searchedClient.username }}</p>
@@ -54,7 +59,7 @@
         </div>
       </div>
 
-      <div class="container mt-4">
+      <div class="container mt-5">
         <!-- Campo di ricerca -->
         <input
           type="text"
@@ -64,18 +69,12 @@
         />
 
         <!-- Nessun Cliente Trovato -->
-        <div
-          *ngIf="filteredClienti && filteredClienti.length === 0"
-          class="text-white text-center"
-        >
+        <div *ngIf="filteredClienti.length === 0" class="no-client-message">
           Nessun cliente trovato.
         </div>
 
         <!-- Tabella Clienti -->
-        <table
-          *ngIf="filteredClienti && filteredClienti.length > 0"
-          class="table table-dark table-striped table-custom"
-        >
+        <table *ngIf="filteredClienti.length > 0" class="custom-table">
           <thead>
             <tr>
               <th>Nome</th>
@@ -88,7 +87,7 @@
               <td>{{ cliente.nome }}</td>
               <td>{{ cliente.cognome }}</td>
               <td>
-                <button class="btn-remove" (click)="removeClient(cliente.id)">
+                <button class="btn-remove" (click)="openModal(cliente.id)">
                   Rimuovi
                 </button>
               </td>
@@ -97,6 +96,25 @@
         </table>
       </div>
     </div>
+    <div class="custom-modal-overlay" *ngIf="showModal">
+      <div class="custom-modal">
+        <div class="custom-modal-header">
+          <h5>Conferma Rimozione</h5>
+          <button class="btn-close-modal" (click)="closeModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="custom-modal-body">
+          Sicuro di voler eliminare il cliente dai tuoi preferiti?
+        </div>
+
+        <div class="custom-modal-footer">
+          <button class="btn-confirm" (click)="removeClient()">Conferma</button>
+        </div>
+      </div>
+    </div>
+
     <div
       *ngIf="showNotification"
       class="notification-toast"

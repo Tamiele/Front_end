@@ -3,6 +3,7 @@ import { iCliente } from '../../interfaces/i-cliente';
 import { AuthenticationService } from '../../authentication/authentication.service';
 import { HomePtService } from '../home-pt.service';
 import { iPersonalTrainer } from '../../interfaces/i-personal-trainer';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-my-client',
@@ -16,6 +17,10 @@ export class MyClientComponent implements OnInit {
   searchTerm: string = '';
   totalClienti: number = 0;
   currentPage: number = 0;
+
+  // Cliente da eliminare
+  selectedClientId: number | null = null;
+  showModal: boolean = false;
 
   // Variabili per la ricerca
   searchUsername: string = '';
@@ -43,25 +48,40 @@ export class MyClientComponent implements OnInit {
       this.totalClienti = pageClienti.totalElements;
     });
   }
+  //rimozione cliente dai preferiti
+  removeClient(): void {
+    if (this.selectedClientId !== null) {
+      this.homePtsvc.removeClient(this.selectedClientId).subscribe(
+        () => {
+          this.clienti = this.clienti.filter(
+            (cliente) => cliente.id !== this.selectedClientId
+          );
+          this.totalClienti--;
+          this.closeModal();
+          this.showNotificationMessage(
+            'Cliente rimosso con successo!',
+            'success'
+          );
+        },
+        (error) => {
+          console.error('Errore durante la rimozione del cliente:', error);
+          this.showNotificationMessage(
+            'Errore durante la rimozione del cliente.',
+            'error'
+          );
+        }
+      );
+    }
+  }
 
-  removeClient(id: number): void {
-    this.homePtsvc.removeClient(id).subscribe(
-      () => {
-        this.clienti = this.clienti.filter((cliente) => cliente.id !== id);
-        this.totalClienti--;
-        this.showNotificationMessage(
-          'Cliente rimosso con successo!',
-          'success'
-        );
-      },
-      (error) => {
-        console.error('Errore durante la rimozione del cliente:', error);
-        this.showNotificationMessage(
-          'Errore durante la rimozione del cliente.',
-          'error'
-        );
-      }
-    );
+  // modale rimozione cliente
+  openModal(clientId: number) {
+    this.selectedClientId = clientId;
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 
   get filteredClienti(): iCliente[] {
@@ -114,6 +134,7 @@ export class MyClientComponent implements OnInit {
           'success'
         );
         this.searchedClient = null;
+        this.getAll();
       },
       error: (error) => {
         console.error('Errore durante l’assegnazione del cliente:', error);
@@ -136,5 +157,9 @@ export class MyClientComponent implements OnInit {
     setTimeout(() => {
       this.showNotification = false;
     }, 3000);
+  }
+
+  closeSearchedClient() {
+    this.searchedClient = null;
   }
 }

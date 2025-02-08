@@ -4,12 +4,12 @@
 // Colori principali
 $custom-colors: (
   "orange": #9f3815,
-  "secondary-color": #ff4b4b,
   "dark-bg": #000,
   "bg-page": #222,
   "text-color": #fff,
   "error-color": #ff4b4b,
   "success-color": #28a745,
+  "warning-color": #f4a700,
 );
 
 $theme-colors: map-merge($theme-colors, $custom-colors);
@@ -49,8 +49,8 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 }
 
 .btn-remove:hover {
-  background: #28a745;
-  box-shadow: 0 0 10px rgba(#28a745, 0.8);
+  background: #ff4b4b;
+  box-shadow: 0 0 10px rgba(#ff4b4b, 0.8);
 }
 
 //bottone verde
@@ -74,7 +74,7 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 .cardCustom {
   width: 230px;
   height: 100px;
-  background: rgba(0, 0, 0, 0.507);
+  background: linear-gradient(135deg, #1b191a 30%, #9f3815 100%);
   box-shadow: 0 0 15px rgba(159, 56, 21, 0.7);
   border-radius: 10px;
   display: flex;
