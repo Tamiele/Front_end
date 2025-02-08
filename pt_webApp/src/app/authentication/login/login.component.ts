@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         next: (user) => {
           if (user && user.user.roles) {
             if (user.user.roles.includes('ROLE_PERSONAL_TRAINER')) {
-              this.router.navigate(['/HomePt']); // Rotta per Personal Trainer
+              this.router.navigate(['/HomePt/dashboard']); // Rotta per Personal Trainer
             } else {
               this.router.navigate(['/HomeClienti']); // Rotta per Clienti o altro ruolo
             }
