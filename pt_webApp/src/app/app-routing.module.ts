@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginGuard } from './authentication/guards/login.guard';
+import { GuestGuard } from './authentication/guards/guest.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'authentication/login', pathMatch: 'full' },
@@ -9,11 +11,15 @@ const routes: Routes = [
       import('./authentication/authentication.module').then(
         (m) => m.AuthenticationModule
       ),
+    canActivate: [GuestGuard],
+    canActivateChild: [GuestGuard],
   },
   {
     path: 'HomePt',
     loadChildren: () =>
       import('./home-pt/home-pt.module').then((m) => m.HomePtModule),
+    canActivate: [LoginGuard],
+    canActivateChild: [LoginGuard],
   },
   {
     path: 'HomeClienti',
@@ -21,6 +27,8 @@ const routes: Routes = [
       import('./home-clienti/home-clienti.module').then(
         (m) => m.HomeClientiModule
       ),
+    canActivate: [LoginGuard],
+    canActivateChild: [LoginGuard],
   },
 ];
 

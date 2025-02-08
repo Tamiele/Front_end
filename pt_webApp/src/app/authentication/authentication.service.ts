@@ -40,7 +40,6 @@ export class AuthenticationService {
       .pipe(
         tap((accessData) => {
           if (!accessData.token) {
-            console.error('🚫 ERRORE: Nessun token ricevuto!');
             return;
           }
 
@@ -81,12 +80,6 @@ export class AuthenticationService {
     }
 
     const accessData: iLoginResponse = JSON.parse(userJson);
-
-    if (this.jwtHelper.isTokenExpired(accessData.token)) {
-      localStorage.removeItem('accessData');
-      return;
-    }
-
     this.authSubject$.next(accessData);
   }
 
