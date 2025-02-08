@@ -51,19 +51,6 @@
   z-index: 1;
 }
 
-/* Card */
-.cardCustom {
-  width: 250px;
-  height: 100px; /* Altezza ridotta per evitare spazio inutile */
-  background: rgba(0, 0, 0, 0.507);
-  box-shadow: 0 0 15px rgba(159, 56, 21, 0.7);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 /* Parte superiore con l'immagine */
 .imge {
   width: 93%;
