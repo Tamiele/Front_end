@@ -5,13 +5,12 @@ import { Observable } from 'rxjs';
 
 import { iPageClienti } from '../interfaces/i-page-clienti';
 import { iCliente } from '../interfaces/i-cliente';
+import { iPersonalTrainer } from '../interfaces/i-personal-trainer';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HomePtService {
-  constructor(private http: HttpClient) {}
-
   private clientFavPtUrl: string = environment.clientFavPtUrl;
 
   private removeFavPt: string = environment.removeFavPt;
@@ -19,6 +18,20 @@ export class HomePtService {
   private searchClientUrl: string = environment.searchClient;
 
   private assignClientUrl: string = environment.addClient;
+
+  private apiUrl = environment.personalTrainer;
+
+  constructor(private http: HttpClient) {}
+
+  getProfile(): Observable<iPersonalTrainer> {
+    return this.http.get<iPersonalTrainer>(`${this.apiUrl}`);
+  }
+
+  updateProfile(
+    updatedTrainer: Partial<iPersonalTrainer>
+  ): Observable<iPersonalTrainer> {
+    return this.http.put<iPersonalTrainer>(`${this.apiUrl}`, updatedTrainer);
+  }
 
   getMyClients(page: number): Observable<iPageClienti> {
     let params = new HttpParams()

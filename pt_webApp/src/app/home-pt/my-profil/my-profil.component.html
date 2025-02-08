@@ -1,3 +1,38 @@
-<div class="bg-bg-page vh-100">
-  <app-sidebar-pt class="sidebar"></app-sidebar-pt>
+<div class="bg-page vh-100 d-flex">
+  <app-sidebar-pt></app-sidebar-pt>
+
+  <div class="profile-container">
+    <h2 class="profile-title">I Tuoi Dati</h2>
+
+    <div *ngIf="trainer" class="profile-content">
+      <div class="profile-info">
+        <p><strong>Username:</strong> {{ trainer.username }}</p>
+        <p><strong>Email:</strong> {{ trainer.email }}</p>
+        <p><strong>Nome:</strong> {{ trainer.nome }}</p>
+        <p><strong>Cognome:</strong> {{ trainer.cognome }}</p>
+        <p><strong>Data di Nascita:</strong> {{ trainer.dataDiNascita }}</p>
+      </div>
+
+      <button class="btn-edit" (click)="enableEdit()">Modifica</button>
+
+      <div *ngIf="isEditing" class="edit-form">
+        <input
+          type="text"
+          [(ngModel)]="trainer.nome"
+          placeholder="Nuovo Nome"
+        />
+        <input
+          type="text"
+          [(ngModel)]="trainer.cognome"
+          placeholder="Nuovo Cognome"
+        />
+        <input type="date" [(ngModel)]="trainer.dataDiNascita" />
+
+        <div class="button-group">
+          <button class="btn-add" (click)="saveChanges()">Salva</button>
+          <button class="btn-remove" (click)="cancelEdit()">Annulla</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
