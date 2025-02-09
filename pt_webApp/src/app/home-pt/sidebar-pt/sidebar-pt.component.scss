@@ -4,17 +4,18 @@
   top: 0;
   left: 0;
   padding-top: 1rem;
-  background: linear-gradient(135deg, #f6f7f9 40%, #9f3815 100%);
+  background: linear-gradient(135deg, #ffc278 5%, #9f3815 100%);
 }
 
 .sidebar .nav-link {
-  color: white;
+  color: black;
+  font-weight: bold;
   font-size: 1rem;
 }
 
 .sidebar .nav-link:hover,
 .sidebar .nav-link.active {
-  background-color: #bd3e14d0;
+  background-color: #ffc278;
   border-radius: 5px;
 }
 

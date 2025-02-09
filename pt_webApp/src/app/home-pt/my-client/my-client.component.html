@@ -1,5 +1,5 @@
 <div class="">
-  <div class="content-wrapper flex-grow-1 d-flex flex-column p-4">
+  <div class="flex-grow-1 d-flex flex-column p-3">
     <div class="row g-3">
       <!-- Card Totale Clienti -->
       <div
@@ -58,8 +58,8 @@
         </div>
       </div>
 
-      <div class="container mt-5">
-        <!-- Campo di ricerca -->
+      <div class="container container-table">
+        <h4 class="search-title text-center">I Tuoi Clienti</h4>
         <input
           type="text"
           class="global-form-control search-input mb-3"
@@ -74,7 +74,7 @@
 
         <!-- Tabella Clienti -->
         <table *ngIf="filteredClienti.length > 0" class="custom-table">
-          <thead>
+          <thead class="">
             <tr>
               <th>Nome</th>
               <th>Cognome</th>

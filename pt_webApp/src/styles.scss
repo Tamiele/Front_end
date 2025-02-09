@@ -4,8 +4,7 @@
 // Colori principali
 $custom-colors: (
   "orange": #9f3815,
-  "dark-bg": #000,
-  "bg-page": #222,
+  "bg-page": #f0ebe4,
   "text-color": #fff,
   "error-color": #ff4b4b,
   "success-color": #28a745,
@@ -22,13 +21,14 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   border-radius: 5px;
   border: 2px solid transparent;
   transition: all 0.3s ease-in-out;
-  background: #222;
-  color: #fff;
+  background: white;
+  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
+  color: black;
   outline: none;
 }
 
 .global-form-control::placeholder {
-  color: rgba(#fff, 0.55);
+  color: rgba(black, 0.55);
 }
 
 .global-form-control:focus {
@@ -39,8 +39,9 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 //bottone remove
 .btn-remove {
   padding: 10px;
-  background: #9f3815;
-  color: #fff;
+  background: #ffc278;
+  color: black;
+  font-weight: bold;
   border: none;
   border-radius: 5px;
   font-size: 14px;
@@ -56,8 +57,9 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 //bottone verde
 .btn-add {
   padding: 10px;
-  background: #9f3815;
-  color: #fff;
+  background: #ffc278;
+  color: black;
+  font-weight: bold;
   border: none;
   border-radius: 5px;
   font-size: 14px;
@@ -74,8 +76,9 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 .cardCustom {
   width: 230px;
   height: 100px;
-  background: linear-gradient(135deg, #1b191a 30%, #9f3815 100%);
-  box-shadow: 0 0 15px rgba(159, 56, 21, 0.7);
+  color: #000;
+  background: linear-gradient(135deg, #ffc278 10%, #9f3815 100%);
+  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -104,12 +107,13 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 /* Modale */
 .custom-modal {
-  background: #222;
-  color: #fff;
+  background: white;
+  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
+  color: black;
   padding: 20px;
   border-radius: 10px;
   width: 350px;
-  box-shadow: 0 0 15px rgba(159, 56, 21, 0.7);
+
   animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -119,13 +123,13 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .btn-close-modal {
   background: none;
   border: none;
-  color: white;
+  color: black;
   font-size: 20px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
