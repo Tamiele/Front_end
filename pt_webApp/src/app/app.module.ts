@@ -11,7 +11,7 @@ import {
 } from '@angular/common/http';
 import { TokenInterceptor } from './interceptor/token-interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SharedModule } from './shared.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],

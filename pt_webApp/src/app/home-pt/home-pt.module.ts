@@ -3,14 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { HomePtRoutingModule } from './home-pt-routing.module';
 import { HomePtComponent } from './home-pt.component';
-import { SharedModule } from '../shared.module';
+
 import { MyClientComponent } from './my-client/my-client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { MyProfilComponent } from './my-profil/my-profil.component';
+import { SharedModule } from '../shared/shared.module';
+import { NotifactionComponent } from '../notifaction/notifaction.component';
 
 @NgModule({
-  declarations: [HomePtComponent, MyClientComponent, DashboardComponent, MyProfilComponent],
+  declarations: [
+    HomePtComponent,
+    MyClientComponent,
+    DashboardComponent,
+    MyProfilComponent,
+    NotifactionComponent,
+  ],
   imports: [CommonModule, HomePtRoutingModule, SharedModule, FormsModule],
 })
 export class HomePtModule {}

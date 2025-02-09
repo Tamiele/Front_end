@@ -3,9 +3,6 @@
   padding: 20px;
 }
 
-.bg-page {
-  background-color: #131313;
-}
 /* Parte superiore con il testo */
 .imge {
   width: 93%;
@@ -57,38 +54,6 @@
   margin: 5px 0;
 }
 
-/* Messaggio di errore */
-.notification-toast {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: bold;
-  animation: fadeInOut 4s ease-in-out;
-}
-
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  10% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  90% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-}
-
 .btn-close-card {
   background: none;
   border: none;
@@ -100,101 +65,6 @@
   &:hover {
     color: #ff4b4b;
     transform: scale(1.2);
-  }
-}
-
-.success {
-  background-color: #28a745;
-}
-
-.error {
-  background-color: #ff4b4b;
-}
-
-.warning {
-  background-color: #f4a700;
-}
-
-/* Sfondo del modale */
-.custom-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Modale */
-.custom-modal {
-  background: #222;
-  color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 350px;
-  box-shadow: 0 0 15px rgba(159, 56, 21, 0.7);
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-/* Header */
-.custom-modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.btn-close-modal {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.btn-close-modal:hover {
-  color: #ff4b4b;
-}
-
-.custom-modal-body {
-  margin: 15px 0;
-  font-size: 1rem;
-}
-
-.custom-modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.btn-confirm {
-  background: #d33;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.btn-confirm:hover {
-  background: #ff4b4b;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 

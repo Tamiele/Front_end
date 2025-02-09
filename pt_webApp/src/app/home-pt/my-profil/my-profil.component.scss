@@ -10,7 +10,7 @@
   padding: 40px;
   max-width: 600px;
   margin: auto;
-  background: linear-gradient(135deg, #1b191a 60%, #9f3815 100%);
+  background: linear-gradient(135deg, #1b191a 15%, #9f3815 100%);
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(159, 56, 21, 0.7);
   text-align: center;
@@ -25,7 +25,7 @@
 
 /* Info Profilo */
 .profile-info {
-  background: rgb(26 25 25);
+  background: #1b191a;
   padding: 15px;
   border-radius: 8px;
   color: white;
@@ -35,39 +35,6 @@
 .profile-info p {
   font-size: 16px;
   margin: 8px 0;
-}
-
-/* Pulsante Modifica */
-.btn-edit {
-  background: #9f3815;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  margin-top: 15px;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 5px;
-  width: 100%;
-}
-
-.btn-edit:hover {
-  background: #28a745;
-  box-shadow: 0 0 10px rgba(#28a745, 0.8);
-}
-
-/* Form di Modifica */
-.edit-form {
-  margin-top: 20px;
-}
-
-.edit-form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: none;
-  background: #333;
-  color: white;
-  border-radius: 5px;
 }
 
 /* Pulsanti Salva e Annulla */

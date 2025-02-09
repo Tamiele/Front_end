@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomePtService } from '../home-pt.service';
 import { iPersonalTrainer } from '../../interfaces/i-personal-trainer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-profil',
@@ -12,7 +13,9 @@ export class MyProfilComponent implements OnInit {
   isEditing: boolean = false;
   backupTrainer: iPersonalTrainer | null = null;
 
-  constructor(private homePtsvc: HomePtService) {}
+  showModal: boolean = false;
+
+  constructor(private homePtsvc: HomePtService, private router: Router) {}
   ngOnInit(): void {
     this.loadProfile();
   }
@@ -47,5 +50,30 @@ export class MyProfilComponent implements OnInit {
         error: (err) => console.error('Errore durante l’aggiornamento:', err),
       });
     }
+  }
+
+  deleteAccount(): void {
+    this.homePtsvc.deleteProfile().subscribe({
+      next: () => {
+        alert('Profilo eliminato con successo.');
+        localStorage.removeItem('accessData');
+        this.router.navigate(['/authentication/login']);
+      },
+      error: (err) => {
+        console.error('Errore durante l’eliminazione del profilo:', err);
+        alert('Errore durante la cancellazione del profilo.');
+      },
+    });
+
+    this.closeModal();
+  }
+
+  // modale rimozione cliente
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 }

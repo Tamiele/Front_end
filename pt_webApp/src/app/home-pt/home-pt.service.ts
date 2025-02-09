@@ -33,6 +33,10 @@ export class HomePtService {
     return this.http.put<iPersonalTrainer>(`${this.apiUrl}`, updatedTrainer);
   }
 
+  deleteProfile(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/delete`);
+  }
+
   getMyClients(page: number): Observable<iPageClienti> {
     let params = new HttpParams()
       .set('page', page.toString())

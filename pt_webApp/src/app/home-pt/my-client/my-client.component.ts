@@ -1,3 +1,4 @@
+import { NotificationService } from './../../notifaction/notification.service';
 import { Component, OnInit } from '@angular/core';
 import { iCliente } from '../../interfaces/i-cliente';
 import { AuthenticationService } from '../../authentication/authentication.service';
@@ -28,13 +29,8 @@ export class MyClientComponent implements OnInit {
   searchedClient: iCliente | null = null;
   clientHasTrainer: boolean = false;
 
-  // Notifica dinamica
-  notificationMessage: string = '';
-  notificationType: 'success' | 'error' | 'warning' = 'error';
-  showNotification: boolean = false;
-
   constructor(
-    private authService: AuthenticationService,
+    private ntfService: NotificationService,
     private homePtsvc: HomePtService
   ) {}
 
@@ -58,14 +54,14 @@ export class MyClientComponent implements OnInit {
           );
           this.totalClienti--;
           this.closeModal();
-          this.showNotificationMessage(
+          this.ntfService.showNotificationMessage(
             'Cliente rimosso con successo!',
             'success'
           );
         },
         (error) => {
           console.error('Errore durante la rimozione del cliente:', error);
-          this.showNotificationMessage(
+          this.ntfService.showNotificationMessage(
             'Errore durante la rimozione del cliente.',
             'error'
           );
@@ -94,7 +90,7 @@ export class MyClientComponent implements OnInit {
 
   searchClient() {
     if (!this.searchUsername && !this.searchEmail) {
-      this.showNotificationMessage(
+      this.ntfService.showNotificationMessage(
         'Inserisci almeno un parametro di ricerca.',
         'warning'
       );
@@ -106,7 +102,7 @@ export class MyClientComponent implements OnInit {
       .subscribe({
         next: (response) => {
           if (response.personalTrainerId) {
-            this.showNotificationMessage(
+            this.ntfService.showNotificationMessage(
               'Il Cliente non è disponibile.',
               'error'
             );
@@ -118,7 +114,7 @@ export class MyClientComponent implements OnInit {
         },
         error: (error) => {
           console.error('Errore durante la ricerca del cliente:', error);
-          this.showNotificationMessage(
+          this.ntfService.showNotificationMessage(
             'Il Cliente non è disponibile.',
             'error'
           );
@@ -129,7 +125,7 @@ export class MyClientComponent implements OnInit {
   addClient(clientId: number) {
     this.homePtsvc.assignClientToTrainer(clientId).subscribe({
       next: () => {
-        this.showNotificationMessage(
+        this.ntfService.showNotificationMessage(
           'Cliente assegnato con successo!',
           'success'
         );
@@ -138,25 +134,12 @@ export class MyClientComponent implements OnInit {
       },
       error: (error) => {
         console.error('Errore durante l’assegnazione del cliente:', error);
-        this.showNotificationMessage(
+        this.ntfService.showNotificationMessage(
           'Errore durante l’assegnazione del cliente.',
           'error'
         );
       },
     });
-  }
-
-  showNotificationMessage(
-    message: string,
-    type: 'success' | 'error' | 'warning'
-  ) {
-    this.notificationMessage = message;
-    this.notificationType = type;
-    this.showNotification = true;
-
-    setTimeout(() => {
-      this.showNotification = false;
-    }, 3000);
   }
 
   closeSearchedClient() {
