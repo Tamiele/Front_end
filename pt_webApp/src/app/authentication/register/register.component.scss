@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1b191a 30%, #9f3815 100%);
+  background: linear-gradient(135deg, #ffc278 5%, #9f3815 100%);
   animation: bg-animation 10s infinite alternate;
 }
 
@@ -19,7 +19,7 @@
 
 /* Box di registrazione */
 .register-box {
-  background: rgba(0, 0, 0, 0.9);
+  background: #f0ebe4;
   padding: 30px;
   border-radius: 10px;
   width: 550px;
@@ -41,15 +41,16 @@
 
 /* Titolo */
 .register-title {
-  color: #fff;
+  color: black;
   font-size: 24px;
   font-weight: bold;
 }
 
 /* Sottotitolo */
 .register-subtitle {
-  color: #9f3815;
+  color: #c87340;
   font-size: 16px;
+  font-weight: 500;
   margin-bottom: 20px;
 }
 
@@ -59,7 +60,7 @@
 }
 
 label {
-  color: #fff;
+  color: black;
   font-weight: bold;
 }
 
@@ -80,8 +81,8 @@ label {
 .btn-register {
   width: 100%;
   padding: 12px;
-  background: #9f3815;
-  color: #fff;
+  background: #ffc278;
+  color: black;
   border: none;
   border-radius: 5px;
   font-size: 18px;
@@ -91,24 +92,25 @@ label {
 }
 
 .btn-register:hover {
-  background: #28a745;
-  box-shadow: 0 0 10px rgba(#28a745, 0.8);
+  background: #ffcc8d;
+  box-shadow: 0 0 10px rgba(#ffcc8d, 0.8);
 }
 
 .btn-register:disabled {
-  background: #444;
+  background: #c87340;
   cursor: not-allowed;
 }
 
 /* Link per il login */
 .login-link {
   margin-top: 15px;
-  color: #fff;
+  color: black;
   font-size: 14px;
+  font-weight: 500;
 }
 
 .login-link a {
-  color: #9f3815;
+  color: #c87340;
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease-in-out;
@@ -116,7 +118,6 @@ label {
 
 .login-link a:hover {
   color: #ff4b4b;
-  text-decoration: underline;
 }
 
 /* Stile per il toggle switch */
@@ -124,9 +125,10 @@ label {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #fff;
+  color: black;
   font-size: 14px;
   margin-top: 10px;
+  font-weight: 500;
 }
 
 /* Container switch */
@@ -172,7 +174,7 @@ label {
 
 /* Quando attivo cambia colore */
 .switch input:checked + .slider {
-  background-color: #9f3815;
+  background-color: #c87340;
 }
 
 /* Sposta il cerchio */
