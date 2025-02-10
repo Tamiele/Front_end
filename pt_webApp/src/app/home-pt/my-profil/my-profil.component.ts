@@ -1,7 +1,9 @@
+import { NotificationService } from './../../notifaction/notification.service';
 import { Component, OnInit } from '@angular/core';
 import { HomePtService } from '../home-pt.service';
 import { iPersonalTrainer } from '../../interfaces/i-personal-trainer';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../../authentication/authentication.service';
 
 @Component({
   selector: 'app-my-profil',
@@ -15,7 +17,12 @@ export class MyProfilComponent implements OnInit {
 
   showModal: boolean = false;
 
-  constructor(private homePtsvc: HomePtService, private router: Router) {}
+  constructor(
+    private homePtsvc: HomePtService,
+    private router: Router,
+    private ntfService: NotificationService,
+    private authService: AuthenticationService
+  ) {}
   ngOnInit(): void {
     this.loadProfile();
   }
@@ -55,13 +62,21 @@ export class MyProfilComponent implements OnInit {
   deleteAccount(): void {
     this.homePtsvc.deleteProfile().subscribe({
       next: () => {
-        alert('Profilo eliminato con successo.');
-        localStorage.removeItem('accessData');
-        this.router.navigate(['/authentication/login']);
+        this.ntfService.showNotificationMessage(
+          'Profilo eliminato con successo!',
+          'success'
+        );
+
+        setTimeout(() => {
+          this.authService.logout();
+        }, 2000);
       },
       error: (err) => {
         console.error('Errore durante l’eliminazione del profilo:', err);
-        alert('Errore durante la cancellazione del profilo.');
+        this.ntfService.showNotificationMessage(
+          'Errore durante la cancellazione del profilo.',
+          'error'
+        );
       },
     });
 

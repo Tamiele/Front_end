@@ -3,9 +3,9 @@
 
 // Colori principali
 $custom-colors: (
-  "orange": #9f3815,
+  "orange": #ffc278,
   "bg-page": #f0ebe4,
-  "text-color": #fff,
+
   "error-color": #ff4b4b,
   "success-color": #28a745,
   "warning-color": #f4a700,
@@ -32,7 +32,7 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 }
 
 .global-form-control:focus {
-  border-color: #9f3815;
+  border-color: #ffc278;
   box-shadow: 0 0 10px $box-shadow;
 }
 
@@ -74,10 +74,11 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 /* Card */
 .cardCustom {
-  width: 230px;
-  height: 100px;
+  width: auto;
+  height: auto;
+  padding: 10px;
   color: #000;
-  background: linear-gradient(135deg, #ffc278 10%, #9f3815 100%);
+  background: #ffc278;
   box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
   border-radius: 10px;
   display: flex;
