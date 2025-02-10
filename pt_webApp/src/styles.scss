@@ -5,7 +5,7 @@
 $custom-colors: (
   "orange": #ffc278,
   "bg-page": #f0ebe4,
-
+  "botton-color": #c87340,
   "error-color": #ff4b4b,
   "success-color": #28a745,
   "warning-color": #f4a700,
@@ -22,7 +22,7 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   border: 2px solid transparent;
   transition: all 0.3s ease-in-out;
   background: white;
-  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
+  box-shadow: 0px 0px 20px 8px rgba(17, 17, 26, 0.08);
   color: black;
   outline: none;
 }
@@ -33,14 +33,13 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 .global-form-control:focus {
   border-color: #ffc278;
-  box-shadow: 0 0 10px $box-shadow;
 }
 
 //bottone remove
 .btn-remove {
   padding: 10px;
-  background: #ffc278;
-  color: black;
+  background: #c87340;
+  color: white;
   font-weight: bold;
   border: none;
   border-radius: 5px;
@@ -50,16 +49,17 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 }
 
 .btn-remove:hover {
-  background: #ff4b4b;
-  box-shadow: 0 0 10px rgba(#ff4b4b, 0.8);
+  background: #ffcc8d;
+  box-shadow: 0 0 10px rgba(#ffcc8d, 0.8);
 }
 
 //bottone verde
 .btn-add {
   padding: 10px;
-  background: #ffc278;
-  color: black;
+  background: #c87340;
+  color: white;
   font-weight: bold;
+
   border: none;
   border-radius: 5px;
   font-size: 14px;
@@ -68,8 +68,8 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 }
 
 .btn-add:hover {
-  background: #28a745;
-  box-shadow: 0 0 10px rgba(#28a745, 0.8);
+  background: #ffcc8d;
+  box-shadow: 0 0 10px rgba(#ffcc8d, 0.8);
 }
 
 /* Card */
@@ -77,19 +77,10 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   width: auto;
   height: auto;
   padding: 10px;
-  color: #000;
-  background: #ffc278;
-  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
+  color: black;
+  background: white;
+  box-shadow: 0px 0px 20px 8px rgba(17, 17, 26, 0.08);
   border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  transition: transform 0.3s ease-in-out;
-  cursor: default;
-}
-.cardCustom:hover {
-  transform: scale(1.05);
 }
 
 /* Sfondo del modale */
@@ -109,7 +100,7 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 /* Modale */
 .custom-modal {
   background: white;
-  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
+  box-shadow: 0px 0px 20px 8px rgba(17, 17, 26, 0.08);
   color: black;
   padding: 20px;
   border-radius: 10px;

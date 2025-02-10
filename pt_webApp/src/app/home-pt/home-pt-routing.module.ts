@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePtComponent } from './home-pt.component';
 import { MyClientComponent } from './my-client/my-client.component';
 import { MyProfilComponent } from './my-profil/my-profil.component';
+import { ProgrammiComponent } from './programmi/programmi.component';
+import { EserciziComponent } from './esercizi/esercizi.component';
 
 const routes: Routes = [
   {
@@ -13,6 +15,8 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'clienti', component: MyClientComponent },
       { path: 'myProfil', component: MyProfilComponent },
+      { path: 'programmi', component: ProgrammiComponent },
+      { path: 'esercizi', component: EserciziComponent },
     ],
   },
 ];
