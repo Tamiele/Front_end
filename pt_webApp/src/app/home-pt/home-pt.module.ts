@@ -6,7 +6,7 @@ import { HomePtComponent } from './home-pt.component';
 
 import { MyClientComponent } from './my-client/my-client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyProfilComponent } from './my-profil/my-profil.component';
 import { SharedModule } from '../shared/shared.module';
 import { NotifactionComponent } from '../notifaction/notifaction.component';
@@ -23,6 +23,12 @@ import { EserciziComponent } from './esercizi/esercizi.component';
     ProgrammiComponent,
     EserciziComponent,
   ],
-  imports: [CommonModule, HomePtRoutingModule, SharedModule, FormsModule],
+  imports: [
+    CommonModule,
+    HomePtRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class HomePtModule {}
