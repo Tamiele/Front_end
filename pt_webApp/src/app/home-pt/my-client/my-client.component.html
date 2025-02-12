@@ -35,7 +35,7 @@
             </div>
             <div class="col-12 col-lg-4">
               <button class="btn-add w-75" (click)="searchClient()">
-                Cerca
+                Cerca <i class="fas fa-search ms-1"></i>
               </button>
             </div>
           </div>
@@ -53,7 +53,7 @@
           <p><strong>Username:</strong> {{ searchedClient.username }}</p>
           <p><strong>Email:</strong> {{ searchedClient.email }}</p>
           <button class="btn-add" (click)="addClient(searchedClient.id)">
-            Aggiungi ai tuoi clienti
+            <i class="fas fa-user-plus me-1"></i> Aggiungi ai clienti
           </button>
         </div>
       </div>
@@ -87,7 +87,7 @@
               <td>{{ cliente.cognome }}</td>
               <td>
                 <button class="btn-remove" (click)="openModal(cliente.id)">
-                  Rimuovi
+                  <i class="fas fa-trash-alt me-1"></i> Elimina
                 </button>
               </td>
             </tr>
