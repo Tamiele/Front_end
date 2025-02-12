@@ -5,6 +5,8 @@ import { iPersonalTrainer } from '../../interfaces/i-personal-trainer';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../authentication/authentication.service';
 
+import { ModalService } from '../../modal/modal.service';
+
 @Component({
   selector: 'app-my-profil',
   templateUrl: './my-profil.component.html',
@@ -21,7 +23,8 @@ export class MyProfilComponent implements OnInit {
     private homePtsvc: HomePtService,
     private router: Router,
     private ntfService: NotificationService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private modalService: ModalService
   ) {}
   ngOnInit(): void {
     this.loadProfile();
@@ -60,35 +63,30 @@ export class MyProfilComponent implements OnInit {
   }
 
   deleteAccount(): void {
-    this.homePtsvc.deleteProfile().subscribe({
-      next: () => {
-        this.ntfService.showNotificationMessage(
-          'Profilo eliminato con successo!',
-          'success'
-        );
+    this.modalService.showModal(
+      'Conferma Rimozione ',
+      'Sei sicuro di voler il tuo Account? Tutti i Tuoi Progressi Andranno Persi!',
+      () => {
+        this.homePtsvc.deleteProfile().subscribe({
+          next: () => {
+            this.ntfService.showNotificationMessage(
+              'Profilo eliminato con successo!',
+              'success'
+            );
 
-        setTimeout(() => {
-          this.authService.logout();
-        }, 2000);
-      },
-      error: (err) => {
-        console.error('Errore durante l’eliminazione del profilo:', err);
-        this.ntfService.showNotificationMessage(
-          'Errore durante la cancellazione del profilo.',
-          'error'
-        );
-      },
-    });
-
-    this.closeModal();
-  }
-
-  // modale rimozione cliente
-  openModal() {
-    this.showModal = true;
-  }
-
-  closeModal() {
-    this.showModal = false;
+            setTimeout(() => {
+              this.authService.logout();
+            }, 2000);
+          },
+          error: (err) => {
+            console.error('Errore durante l’eliminazione del profilo:', err);
+            this.ntfService.showNotificationMessage(
+              'Errore durante la cancellazione del profilo.',
+              'error'
+            );
+          },
+        });
+      }
+    );
   }
 }

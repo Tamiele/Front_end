@@ -16,6 +16,7 @@ import { iWorkout } from '../../interfaces/i-workout';
 import { iWorkoutExercise } from '../../interfaces/i-workout-exercise';
 import { HomePtService } from '../home-pt.service';
 import { NotificationService } from '../../notifaction/notification.service';
+import { ModalService } from '../../modal/modal.service';
 
 @Component({
   selector: 'app-programmi',
@@ -39,7 +40,8 @@ export class ProgrammiComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private homePtSvc: HomePtService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -87,23 +89,27 @@ export class ProgrammiComponent implements OnInit {
       return;
     }
 
-    if (!confirm('Sei sicuro di voler eliminare questo programma?')) return;
-
-    this.homePtSvc.deleteProgram(programId).subscribe({
-      next: () => {
-        this.notificationService.showNotificationMessage(
-          'Programma eliminato con successo!',
-          'success'
-        );
-        this.loadPrograms();
-      },
-      error: () => {
-        this.notificationService.showNotificationMessage(
-          'Errore durante l’eliminazione del programma!',
-          'error'
-        );
-      },
-    });
+    this.modalService.showModal(
+      'Conferma Eliminazione',
+      'Sei sicuro di voler eliminare questo programma?',
+      () => {
+        this.homePtSvc.deleteProgram(programId).subscribe({
+          next: () => {
+            this.notificationService.showNotificationMessage(
+              'Programma eliminato con successo!',
+              'success'
+            );
+            this.loadPrograms();
+          },
+          error: () => {
+            this.notificationService.showNotificationMessage(
+              'Errore durante l’eliminazione del programma!',
+              'error'
+            );
+          },
+        });
+      }
+    );
   }
 
   get weeks(): FormArray {

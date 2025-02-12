@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../authentication/authentication.servi
 import { HomePtService } from '../home-pt.service';
 import { iPersonalTrainer } from '../../interfaces/i-personal-trainer';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalService } from '../../modal/modal.service';
 
 @Component({
   selector: 'app-my-client',
@@ -31,7 +32,8 @@ export class MyClientComponent implements OnInit {
 
   constructor(
     private ntfService: NotificationService,
-    private homePtsvc: HomePtService
+    private homePtsvc: HomePtService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -45,39 +47,35 @@ export class MyClientComponent implements OnInit {
     });
   }
   //rimozione cliente dai preferiti
-  removeClient(): void {
-    if (this.selectedClientId !== null) {
-      this.homePtsvc.removeClient(this.selectedClientId).subscribe(
+  removeClient(selectedClientId: number): void {
+    if (selectedClientId !== null && selectedClientId !== undefined) {
+      this.modalService.showModal(
+        'Conferma Rimozione Cliente',
+        'Sei sicuro di voler rimuovere questo cliente?',
         () => {
-          this.clienti = this.clienti.filter(
-            (cliente) => cliente.id !== this.selectedClientId
-          );
-          this.totalClienti--;
-          this.closeModal();
-          this.ntfService.showNotificationMessage(
-            'Cliente rimosso con successo!',
-            'success'
-          );
-        },
-        (error) => {
-          console.error('Errore durante la rimozione del cliente:', error);
-          this.ntfService.showNotificationMessage(
-            'Errore durante la rimozione del cliente.',
-            'error'
-          );
+          this.homePtsvc.removeClient(selectedClientId).subscribe({
+            next: () => {
+              this.clienti = this.clienti.filter(
+                (cliente) => cliente.id !== selectedClientId
+              );
+              this.totalClienti--;
+              this.modalService.closeModal();
+              this.ntfService.showNotificationMessage(
+                'Cliente rimosso con successo!',
+                'success'
+              );
+            },
+            error: (error) => {
+              console.error('Errore durante la rimozione del cliente:', error);
+              this.ntfService.showNotificationMessage(
+                'Errore durante la rimozione del cliente.',
+                'error'
+              );
+            },
+          });
         }
       );
     }
-  }
-
-  // modale rimozione cliente
-  openModal(clientId: number) {
-    this.selectedClientId = clientId;
-    this.showModal = true;
-  }
-
-  closeModal() {
-    this.showModal = false;
   }
 
   get filteredClienti(): iCliente[] {

@@ -12,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NotifactionComponent } from '../notifaction/notifaction.component';
 import { ProgrammiComponent } from './programmi/programmi.component';
 import { EserciziComponent } from './esercizi/esercizi.component';
+import { ModalComponent } from '../modal/modal.component';
 
 @NgModule({
   declarations: [

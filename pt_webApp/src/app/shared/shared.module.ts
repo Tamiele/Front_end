@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { RouterModule } from '@angular/router';
 import { SidebarPtComponent } from '../home-pt/sidebar-pt/sidebar-pt.component';
+import { ModalComponent } from '../modal/modal.component';
 
 @NgModule({
-  declarations: [SidebarPtComponent],
+  declarations: [SidebarPtComponent, ModalComponent],
   imports: [CommonModule, RouterModule],
-  exports: [SidebarPtComponent],
+  exports: [SidebarPtComponent, ModalComponent],
 })
 export class SharedModule {}
