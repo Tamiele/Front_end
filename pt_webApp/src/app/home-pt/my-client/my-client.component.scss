@@ -10,6 +10,7 @@
 /* Box di ricerca cliente */
 .search-client-box {
   text-align: center;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .search-title {
@@ -28,7 +29,7 @@
   box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
   color: black;
   text-align: start;
-  animation: fadeIn 0.6s ease-in-out;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .found-client-card p {
@@ -51,6 +52,7 @@
 
 .container-table {
   margin-top: 6rem;
+  animation: fadeIn 2s ease-in-out;
 }
 
 /* Tabella */

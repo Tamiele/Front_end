@@ -209,7 +209,11 @@
 
     <div *ngIf="programs.length > 0; else noPrograms">
       <div class="row">
-        <div *ngFor="let program of programs" class="col-md-6 col-lg-4 mb-3">
+        <div
+          *ngFor="let program of programs; let i = index"
+          class="col-md-6 col-lg-4 mb-3 animated-card"
+          [style.animationDelay]="i * 0.3 + 's'"
+        >
           <div class="card shadow-sm h-100">
             <div class="card-body d-flex flex-column justify-content-between">
               <div>

@@ -42,17 +42,11 @@ export class RegisterComponent implements OnInit {
   register(): void {
     if (this.registerForm.valid) {
       const formData = this.registerForm.value;
-
-      // Imposta il ruolo in base alla checkbox
       const roles = formData.isPersonalTrainer
         ? ['ROLE_PERSONAL_TRAINER']
         : ['ROLE_USER'];
 
-      const requestData = {
-        ...formData,
-        roles,
-      };
-
+      const requestData = { ...formData, roles };
       delete requestData.isPersonalTrainer;
 
       this.authService.register(requestData).subscribe({
