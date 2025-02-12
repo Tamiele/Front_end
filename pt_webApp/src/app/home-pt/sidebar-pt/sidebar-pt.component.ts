@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class SidebarPtComponent implements OnInit, OnDestroy {
   userRoles: string[] = [];
   private userSubscription!: Subscription;
+  isSidebarOpen = false;
 
   constructor(private authService: AuthenticationService) {}
 
@@ -31,6 +32,16 @@ export class SidebarPtComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
+    }
+  }
+
+  toggleSidebar(): void {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+  closeSidebar(): void {
+    if (window.innerWidth < 992) {
+      this.isSidebarOpen = false;
     }
   }
 }

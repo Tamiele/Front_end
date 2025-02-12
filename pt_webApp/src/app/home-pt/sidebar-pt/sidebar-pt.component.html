@@ -1,124 +1,245 @@
-<nav class="sidebar text-center">
-  <div class="position-sticky" *ngIf="hasRole('ROLE_PERSONAL_TRAINER')">
-    <!-- Logo -->
-    <div class="py-3 rounded-5 mb-3 logo-container">
-      <img
-        src="/img/Logo.png"
-        alt="Logo"
-        class="img-fluid rounded-4"
-        style="max-width: 150px"
-      />
+<!-- Sezione Mobile: visibile solo su dispositivi piccoli -->
+<div class="d-lg-none">
+  <nav class="navbar navbar-expand-lg nav-backgound">
+    <div class="container-fluid">
+      <!-- Logo -->
+      <a class="navbar-brand" routerLink="/HomePt/dashboard">
+        <img
+          src="/img/Logo.png"
+          alt="Logo"
+          class="img-fluid rounded-4"
+          style="max-width: 100px"
+        />
+      </a>
+      <!-- Toggle button per il menu a tendina -->
+      <button
+        class="button-menu"
+        type="button "
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarMobileMenu"
+        aria-controls="sidebarMobileMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars text-orange"></i>
+      </button>
+      <!-- Menu Collassabile -->
+      <div class="collapse navbar-collapse" id="sidebarMobileMenu">
+        <ul class="navbar-nav flex-column text-start gap-2">
+          <!-- Menu per Personal Trainer -->
+          <ng-container *ngIf="hasRole('ROLE_PERSONAL_TRAINER')">
+            <li class="nav-item">
+              <a
+                class="nav-link px-2"
+                routerLink="/HomePt/dashboard"
+                routerLinkActive="active"
+              >
+                <i class="fas fa-home me-2"></i> Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link px-2"
+                routerLink="/HomePt/clienti"
+                routerLinkActive="active"
+              >
+                <i class="fas fa-users me-2"></i> Clienti
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link px-2"
+                routerLink="/HomePt/programmi"
+                routerLinkActive="active"
+              >
+                <i class="fas fa-tasks me-2"></i> Programmi
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link px-2"
+                routerLink="/HomePt/esercizi"
+                routerLinkActive="active"
+              >
+                <i class="fas fa-dumbbell me-2"></i> Esercizi
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link px-2"
+                routerLink="/HomePt/myProfil"
+                routerLinkActive="active"
+              >
+                <i class="fas fa-id-card me-2"></i> Il Mio Profilo
+              </a>
+            </li>
+          </ng-container>
+          <!-- Menu per Cliente -->
+          <ng-container *ngIf="hasRole('ROLE_USER')">
+            <li class="nav-item">
+              <a
+                class="nav-link px-2"
+                routerLink="/HomeClienti"
+                routerLinkActive="active"
+              >
+                Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link px-2"
+                routerLink="/HomeClienti/allenamenti"
+                routerLinkActive="active"
+              >
+                Allenamenti
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link px-2"
+                routerLink="/HomeClienti/nutrizione"
+                routerLinkActive="active"
+              >
+                Nutrizione
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link px-2"
+                routerLink="/HomeClienti/impostazioni"
+                routerLinkActive="active"
+              >
+                Il Mio Profilo
+              </a>
+            </li>
+          </ng-container>
+          <!-- Logout (comune a entrambi) -->
+          <li class="nav-item">
+            <a class="nav-link px-2" (click)="logOut()">
+              <i class="fas fa-sign-out-alt me-2"></i> Logout</a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+</div>
 
-    <div class="mx-4">
-      <ul class="nav flex-column text-white text-start gap-3">
-        <li class="nav-item mb-2">
-          <a
-            class="nav-link"
-            routerLink="/HomePt/dashboard"
-            routerLinkActive="active"
-          >
-            <i class="bi bi-house-door"></i
-            ><i class="fas fa-home me-2"></i> Dashboard
-          </a>
-        </li>
-        <li class="nav-item mb-2">
-          <a
-            class="nav-link"
-            routerLink="/HomePt/clienti"
-            routerLinkActive="active"
-          >
-            <i class="fas fa-users me-2"></i> Clienti
-          </a>
-        </li>
-        <li class="nav-item mb-2">
-          <a
-            class="nav-link"
-            routerLink="/HomePt/programmi"
-            routerLinkActive="active"
-          >
-            <i class="fas fa-tasks me-2"></i> Programmi
-          </a>
-        </li>
-        <li class="nav-item mb-2">
-          <a
-            class="nav-link"
-            routerLink="/HomePt/esercizi"
-            routerLinkActive="active"
-          >
-            <i class="fas fa-dumbbell me-2"></i> Esercizi
-          </a>
-        </li>
-        <li class="nav-item mb-2">
-          <a
-            class="nav-link"
-            routerLink="/HomePt/myProfil"
-            routerLinkActive="active"
-          >
-            <i class="fas fa-id-card me-2"></i> Il Mio Profilo
-          </a>
-        </li>
-        <li class="nav-item mb-2">
-          <a class="nav-link" routerLink="" (click)="logOut()">
-            <i class="fas fa-sign-out-alt me-2"></i> Logout
-          </a>
-        </li>
-      </ul>
+<!-- Sezione Desktop: visibile solo su dispositivi grandi -->
+<div class="d-none d-lg-block">
+  <nav class="sidebar text-center">
+    <div class="">
+      <!-- Logo -->
+      <div class="py-3 mb-3">
+        <img
+          src="/img/Logo.png"
+          alt="Logo"
+          class="img-fluid rounded-4"
+          style="max-width: 150px"
+        />
+      </div>
+      <div class="mx-4">
+        <!-- Menu per Personal Trainer -->
+        <ul
+          class="nav flex-column text-start gap-3"
+          *ngIf="hasRole('ROLE_PERSONAL_TRAINER')"
+        >
+          <li class="nav-item mb-2">
+            <a
+              class="nav-link"
+              routerLink="/HomePt/dashboard"
+              routerLinkActive="active"
+            >
+              <i class="fas fa-home me-2"></i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a
+              class="nav-link"
+              routerLink="/HomePt/clienti"
+              routerLinkActive="active"
+            >
+              <i class="fas fa-users me-2"></i> Clienti
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a
+              class="nav-link"
+              routerLink="/HomePt/programmi"
+              routerLinkActive="active"
+            >
+              <i class="fas fa-tasks me-2"></i> Programmi
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a
+              class="nav-link"
+              routerLink="/HomePt/esercizi"
+              routerLinkActive="active"
+            >
+              <i class="fas fa-dumbbell me-2"></i> Esercizi
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a
+              class="nav-link"
+              routerLink="/HomePt/myProfil"
+              routerLinkActive="active"
+            >
+              <i class="fas fa-id-card me-2"></i> Il Mio Profilo
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a class="nav-link" (click)="logOut()">
+              <i class="fas fa-sign-out-alt me-2"></i> Logout
+            </a>
+          </li>
+        </ul>
+        <!-- Menu Cliente -->
+        <ul class="nav flex-column text-white" *ngIf="hasRole('ROLE_USER')">
+          <li class="nav-item mb-2">
+            <a
+              class="nav-link"
+              routerLink="/HomeClienti"
+              routerLinkActive="active"
+            >
+              <i class="fas fa-home me-2"></i> Home
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a
+              class="nav-link"
+              routerLink="/HomeClienti/allenamenti"
+              routerLinkActive="active"
+            >
+              <i class="fas fa-dumbbell me-2"></i> Allenamenti
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a
+              class="nav-link"
+              routerLink="/HomeClienti/nutrizione"
+              routerLinkActive="active"
+            >
+              <i class="bi bi-list-check"></i> Nutrizione
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a
+              class="nav-link"
+              routerLink="/HomeClienti/impostazioni"
+              routerLinkActive="active"
+            >
+              <i class="fas fa-id-card me-2"></i> Il Mio Profilo
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a class="nav-link" (click)="logOut()">
+              <i class="fas fa-sign-out-alt me-2"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-
-  <!-- Menu cliente -->
-  <div class="position-sticky" *ngIf="hasRole('ROLE_USER')">
-    <!-- Logo -->
-    <div class="py-3 rounded-5 mb-3 logo-container">
-      <img
-        src="/Logo.png"
-        alt="Logo"
-        class="img-fluid rounded-4"
-        style="max-width: 150px"
-      />
-    </div>
-
-    <div class="mx-4">
-      <ul class="nav flex-column text-white">
-        <li class="nav-item mb-2">
-          <a
-            class="nav-link"
-            routerLink="/HomeClienti"
-            routerLinkActive="active"
-          >
-            <i class="fas fa-home me-2"></i> Home
-          </a>
-        </li>
-        <li class="nav-item mb-2">
-          <a
-            class="nav-link"
-            routerLink="allenamenti"
-            routerLinkActive="active"
-          >
-            <i class="fas fa-dumbbell me-2"></i> Allenamenti
-          </a>
-        </li>
-        <li class="nav-item mb-2">
-          <a class="nav-link" routerLink="nutrizione" routerLinkActive="active">
-            <i class="bi bi-list-check"></i> Nutrizione
-          </a>
-        </li>
-        <li class="nav-item mb-2">
-          <a
-            class="nav-link"
-            routerLink="impostazioni"
-            routerLinkActive="active"
-          >
-            <i class="fas fa-id-card me-2"></i> Il Mio Profilo
-          </a>
-        </li>
-        <li class="nav-item mb-2">
-          <a class="nav-link" routerLink="" routerLinkActive="active">
-            <i class="fas fa-sign-out-alt me-2"></i> Logout
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  </nav>
+</div>

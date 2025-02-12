@@ -11,6 +11,7 @@
   color: black;
   font-weight: bold;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .sidebar .nav-link:hover,
@@ -19,6 +20,26 @@
   border-radius: 5px;
 }
 
-.logo-container {
-  mix-blend-mode: multiply;
+.navbar .nav-link {
+  color: black;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  background-color: #ffc278;
+  border-radius: 5px;
+}
+
+.nav-backgound {
+  background: linear-gradient(135deg, #ffc278 5%, #9f3815 100%);
+}
+
+.button-menu {
+  border: none;
+  background: none;
+  font-size: 2rem;
+  font-weight: bold;
 }
