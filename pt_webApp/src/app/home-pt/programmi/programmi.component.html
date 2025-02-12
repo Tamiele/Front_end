@@ -1,202 +1,266 @@
-<div class="create-program-container">
-  <h2 class="text-center mb-3">Crea un Nuovo Programma</h2>
+<div class="d-flex flex-column">
+  <div class="create-program-container">
+    <h2 class="text-center mb-3">Crea un Nuovo Programma</h2>
 
-  <!-- Barra di avanzamento -->
-  <div class="step-progress">
-    <div class="step" [class.active]="step === 1">1</div>
-    <div class="step" [class.active]="step === 2">2</div>
-    <div class="step" [class.active]="step === 3">3</div>
-    <div class="step" [class.active]="step === 4">4</div>
-  </div>
-
-  <form [formGroup]="programForm" (ngSubmit)="createProgram()">
-    <!-- STEP 1: Nome e Descrizione -->
-    <div *ngIf="step === 1" class="step-content gap-2">
-      <label>Nome del Programma</label>
-      <input
-        formControlName="name"
-        type="text"
-        class="global-form-control"
-        placeholder="es. Potenziamento Forza"
-        required
-      />
-      <label>Descrizione</label>
-      <textarea
-        formControlName="description"
-        class="global-form-control"
-        placeholder="Descrizione"
-      ></textarea>
-      <label>
-        <input type="checkbox" formControlName="template" /> Questo programma è
-        un template?
-      </label>
-      <div class="button-group">
-        <button class="btn-add" type="submit">Prossimo Step</button>
-      </div>
+    <!-- Barra di avanzamento -->
+    <div class="step-progress">
+      <div class="step" [class.active]="step === 1">1</div>
+      <div class="step" [class.active]="step === 2">2</div>
+      <div class="step" [class.active]="step === 3">3</div>
+      <div class="step" [class.active]="step === 4">4</div>
     </div>
 
-    <!-- STEP 2: Selezione della durata -->
-    <div *ngIf="step === 2" class="step-content">
-      <h3>Imposta la Durata del Programma</h3>
-      <label>Numero di settimane:</label>
-      <input
-        type="number"
-        formControlName="weeksCount"
-        min="1"
-        class="global-form-control"
-      />
-      <div class="button-group">
-        <button class="btn-remove" type="button" (click)="prevStep()">
-          Indietro
-        </button>
-        <button class="btn-add" type="button" (click)="createWeeks()">
-          Prossimo Step
-        </button>
-      </div>
-    </div>
-
-    <!-- STEP 3: Definizione dei giorni di allenamento -->
-    <div *ngIf="step === 3" class="step-content">
-      <h3>Definisci i giorni di allenamento</h3>
-      <div formArrayName="weeks">
-        <div
-          *ngFor="let weekCtrl of weeks.controls; let i = index"
-          [formGroupName]="i"
-        >
-          <h4>Settimana {{ i + 1 }}</h4>
-          <label>Quanti giorni di allenamento?</label>
-          <input
-            type="number"
-            formControlName="weekNumber"
-            min="1"
-            max="7"
-            class="global-form-control"
-          />
+    <form [formGroup]="programForm" (ngSubmit)="createProgram()">
+      <!-- STEP 1: Nome e Descrizione -->
+      <div *ngIf="step === 1" class="step-content gap-2">
+        <label>Nome del Programma</label>
+        <input
+          formControlName="name"
+          type="text"
+          class="global-form-control"
+          placeholder="es. Potenziamento Forza"
+          required
+        />
+        <label>Descrizione</label>
+        <textarea
+          formControlName="description"
+          class="global-form-control"
+          placeholder="Descrizione"
+        ></textarea>
+        <label>
+          <input type="checkbox" formControlName="template" /> Questo programma
+          è un template?
+        </label>
+        <div class="button-group">
+          <button class="btn-add" type="submit">Prossimo Step</button>
         </div>
       </div>
-      <div class="button-group">
-        <button class="btn-remove" type="button" (click)="prevStep()">
-          Indietro
-        </button>
-        <button class="btn-add" type="button" (click)="createWorkouts()">
-          Prossimo Step
-        </button>
-      </div>
-    </div>
 
-    <!-- STEP 4: Selezione degli esercizi e filtro per gruppo muscolare -->
-    <div *ngIf="step === 4" class="step-content">
-      <h3>Assegna gli Esercizi ai Workout</h3>
-
-      <!-- Filtro per gruppo muscolare -->
-      <div class="filter-container">
-        <label for="muscleGroupSelect">Filtra per gruppo muscolare:</label>
-        <select
-          id="muscleGroupSelect"
-          [(ngModel)]="selectedMuscleGroup"
-          [ngModelOptions]="{ standalone: true }"
-          (change)="onMuscleGroupChange()"
-          name="muscleGroup"
-        >
-          <option value="">Tutti i gruppi muscolari</option>
-          <option value="Pettorali">Pettorali</option>
-          <option value="Schiena">Schiena</option>
-          <option value="Gambe">Gambe</option>
-          <option value="Bicipiti">Bicipiti</option>
-          <option value="Tricipiti">Tricipiti</option>
-          <option value="Spalle">Spalle</option>
-          <option value="Addominali">Addominali</option>
-          <option value="Polpacci">Polpacci</option>
-        </select>
+      <!-- STEP 2: Selezione della durata -->
+      <div *ngIf="step === 2" class="step-content">
+        <h3>Imposta la Durata del Programma</h3>
+        <label>Numero di settimane:</label>
+        <input
+          type="number"
+          formControlName="weeksCount"
+          min="1"
+          class="global-form-control"
+        />
+        <div class="button-group">
+          <button class="btn-remove" type="button" (click)="prevStep()">
+            Indietro
+          </button>
+          <button class="btn-add" type="button" (click)="createWeeks()">
+            Prossimo Step
+          </button>
+        </div>
       </div>
 
-      <!-- Elenco delle settimane e dei workout -->
-      <div formArrayName="weeks">
-        <div
-          *ngFor="let weekCtrl of weeks.controls; let i = index"
-          [formGroupName]="i"
-        >
-          <h4>Settimana {{ i + 1 }}</h4>
-          <div formArrayName="workouts">
-            <div
-              *ngFor="let workoutCtrl of getWorkoutsControls(i); let j = index"
-              [formGroupName]="j"
-            >
-              <h5>Giorno {{ j + 1 }}</h5>
-              <label>Nome Workout:</label>
-              <input
-                type="text"
-                formControlName="name"
-                class="global-form-control"
-              />
-              <label class="mb-2">Seleziona gli esercizi:</label>
-              <div *ngFor="let exercise of exercises" class="exercise-row">
-                <div class="exercise-label">
-                  <input
-                    class="input-exercises"
-                    type="checkbox"
-                    [value]="exercise.id"
-                    (change)="toggleExercise(workoutCtrl, exercise.id)"
-                  />
-                  <span>{{ exercise.name }} </span>
-                </div>
-                <div
-                  *ngIf="isExerciseSelected(workoutCtrl, exercise.id)"
-                  class="exercise-inputs"
-                >
-                  <div class="input-group">
-                    <label>Sets</label>
+      <!-- STEP 3: Definizione dei giorni di allenamento -->
+      <div *ngIf="step === 3" class="step-content">
+        <h3>Definisci i giorni di allenamento</h3>
+        <div formArrayName="weeks">
+          <div
+            *ngFor="let weekCtrl of weeks.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <h4>Settimana {{ i + 1 }}</h4>
+            <label>Quanti giorni di allenamento?</label>
+            <input
+              type="number"
+              formControlName="weekNumber"
+              min="1"
+              max="7"
+              class="global-form-control"
+            />
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn-remove" type="button" (click)="prevStep()">
+            Indietro
+          </button>
+          <button class="btn-add" type="button" (click)="createWorkouts()">
+            Prossimo Step
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Selezione degli esercizi e filtro per gruppo muscolare -->
+      <div *ngIf="step === 4" class="step-content">
+        <h3>Assegna gli Esercizi ai Workout</h3>
+
+        <!-- Filtro per gruppo muscolare -->
+        <div class="filter-container">
+          <label for="muscleGroupSelect">Filtra per gruppo muscolare:</label>
+          <select
+            id="muscleGroupSelect"
+            [(ngModel)]="selectedMuscleGroup"
+            [ngModelOptions]="{ standalone: true }"
+            (change)="onMuscleGroupChange()"
+            name="muscleGroup"
+          >
+            <option value="">Tutti i gruppi muscolari</option>
+            <option value="Pettorali">Pettorali</option>
+            <option value="Schiena">Schiena</option>
+            <option value="Gambe">Gambe</option>
+            <option value="Bicipiti">Bicipiti</option>
+            <option value="Tricipiti">Tricipiti</option>
+            <option value="Spalle">Spalle</option>
+            <option value="Addominali">Addominali</option>
+            <option value="Polpacci">Polpacci</option>
+          </select>
+        </div>
+
+        <!-- Elenco delle settimane e dei workout -->
+        <div formArrayName="weeks">
+          <div
+            *ngFor="let weekCtrl of weeks.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <h4>Settimana {{ i + 1 }}</h4>
+            <div formArrayName="workouts">
+              <div
+                *ngFor="
+                  let workoutCtrl of getWorkoutsControls(i);
+                  let j = index
+                "
+                [formGroupName]="j"
+              >
+                <h5>Giorno {{ j + 1 }}</h5>
+                <label>Nome Workout:</label>
+                <input
+                  type="text"
+                  formControlName="name"
+                  class="global-form-control"
+                />
+                <label class="mb-2">Seleziona gli esercizi:</label>
+                <div *ngFor="let exercise of exercises" class="exercise-row">
+                  <div class="exercise-label">
                     <input
-                      required
-                      type="number"
-                      [formControl]="
-                        getExerciseControl(workoutCtrl, exercise.id, 'sets')
-                      "
+                      class="input-exercises"
+                      type="checkbox"
+                      [value]="exercise.id"
+                      (change)="toggleExercise(workoutCtrl, exercise.id)"
                     />
+                    <span>{{ exercise.name }} </span>
                   </div>
-                  <div class="input-group">
-                    <label>Reps</label>
-                    <input
-                      required
-                      type="number"
-                      [formControl]="
-                        getExerciseControl(workoutCtrl, exercise.id, 'reps')
-                      "
-                    />
-                  </div>
-                  <div class="input-group">
-                    <label>Rest</label>
-                    <input
-                      required
-                      type="number"
-                      [formControl]="
-                        getExerciseControl(
-                          workoutCtrl,
-                          exercise.id,
-                          'restValue'
-                        )
-                      "
-                    />
+                  <div
+                    *ngIf="isExerciseSelected(workoutCtrl, exercise.id)"
+                    class="exercise-inputs"
+                  >
+                    <div class="input-group">
+                      <label>Sets</label>
+                      <input
+                        required
+                        type="number"
+                        [formControl]="
+                          getExerciseControl(workoutCtrl, exercise.id, 'sets')
+                        "
+                      />
+                    </div>
+                    <div class="input-group">
+                      <label>Reps</label>
+                      <input
+                        required
+                        type="number"
+                        [formControl]="
+                          getExerciseControl(workoutCtrl, exercise.id, 'reps')
+                        "
+                      />
+                    </div>
+                    <div class="input-group">
+                      <label>Rest</label>
+                      <input
+                        required
+                        type="number"
+                        [formControl]="
+                          getExerciseControl(
+                            workoutCtrl,
+                            exercise.id,
+                            'restValue'
+                          )
+                        "
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="button-group">
+          <button class="btn-remove" type="button" (click)="prevStep()">
+            Indietro
+          </button>
+          <button
+            class="btn-add"
+            type="button"
+            (click)="assignExercisesToWorkouts()"
+          >
+            Salva Programma
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="container mt-4">
+    <h2 class="mb-3 text-center">I Tuoi Programmi</h2>
+
+    <div *ngIf="programs.length > 0; else noPrograms">
+      <div class="row">
+        <div *ngFor="let program of programs" class="col-md-6 col-lg-4 mb-3">
+          <div class="card shadow-sm h-100">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <h5 class="card-title">{{ program.name }}</h5>
+                <p class="card-text text-muted">{{ program.description }}</p>
+              </div>
+
+              <div class="d-flex gap-2 mt-3">
+                <button
+                  class="btn-remove flex-fill"
+                  (click)="deleteProgram(program.id)"
+                >
+                  <i class="fas fa-trash-alt"></i> Elimina
+                </button>
+                <button class="btn-add flex-fill">
+                  <i class="fas fa-user-plus"></i> Assegna
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="button-group">
-        <button class="btn-remove" type="button" (click)="prevStep()">
-          Indietro
-        </button>
+      <!-- Paginazione -->
+      <div class="d-flex justify-content-center align-items-center mt-3 gap-3">
         <button
-          class="btn-add"
-          type="button"
-          (click)="assignExercisesToWorkouts()"
+          class="pagination-button"
+          (click)="goToPage(currentPage - 1)"
+          [disabled]="currentPage === 0"
         >
-          Salva Programma
+          <i class="fas fa-chevron-left"></i> Precedente
+        </button>
+
+        <span class="fw-bold"
+          >Pagina {{ currentPage + 1 }} di {{ totalPages }}</span
+        >
+
+        <button
+          class="pagination-button"
+          (click)="goToPage(currentPage + 1)"
+          [disabled]="currentPage + 1 >= totalPages"
+        >
+          Successivo <i class="fas fa-chevron-right"></i>
         </button>
       </div>
     </div>
-  </form>
+
+    <ng-template #noPrograms>
+      <p class="text-muted text-center fst-italic">
+        Non hai ancora creato alcun programma.
+      </p>
+    </ng-template>
+  </div>
 </div>

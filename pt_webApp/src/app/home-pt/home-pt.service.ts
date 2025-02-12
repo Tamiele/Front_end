@@ -126,4 +126,26 @@ export class HomePtService {
     const params = new HttpParams().set('muscleGroup', muscleGroup);
     return this.http.get<iExercise[]>(`${this.esercizi}`, { params });
   }
+
+  deleteProgram(programId: number): Observable<void> {
+    return this.http.delete<void>(`${this.programmi}/${programId}`);
+  }
+
+  getMyPrograms(
+    page: number,
+    size: number = 6
+  ): Observable<{
+    content: iProgram[];
+    totalPages: number;
+    totalElements: number;
+  }> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+    return this.http.get<{
+      content: iProgram[];
+      totalPages: number;
+      totalElements: number;
+    }>(`${this.programmi}/my-programs`, { params });
+  }
 }

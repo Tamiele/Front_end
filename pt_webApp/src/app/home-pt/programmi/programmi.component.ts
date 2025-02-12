@@ -29,6 +29,13 @@ export class ProgrammiComponent implements OnInit {
   exercises: iExercise[] = [];
   selectedMuscleGroup: string = '';
 
+  //paginazione lista programmi
+  programs: iProgram[] = [];
+  currentPage: number = 0;
+  totalPages: number = 1;
+  totalElements: number = 0;
+  pageSize: number = 6;
+
   constructor(
     private fb: FormBuilder,
     private homePtSvc: HomePtService,
@@ -44,6 +51,59 @@ export class ProgrammiComponent implements OnInit {
       weeks: this.fb.array([]),
     });
     this.loadExercises();
+    this.loadPrograms();
+  }
+
+  loadPrograms(): void {
+    this.homePtSvc.getMyPrograms(this.currentPage, this.pageSize).subscribe({
+      next: (response) => {
+        this.programs = response.content;
+        this.totalPages = response.totalPages;
+        this.totalElements = response.totalElements;
+      },
+      error: () => {
+        this.notificationService.showNotificationMessage(
+          'Errore nel caricamento dei programmi!',
+          'error'
+        );
+      },
+    });
+  }
+
+  // Navigazione paginazione
+  goToPage(page: number): void {
+    if (page >= 0 && page < this.totalPages) {
+      this.currentPage = page;
+      this.loadPrograms();
+    }
+  }
+
+  deleteProgram(programId: number | undefined): void {
+    if (programId === undefined) {
+      this.notificationService.showNotificationMessage(
+        'Errore: ID del programma non valido!',
+        'error'
+      );
+      return;
+    }
+
+    if (!confirm('Sei sicuro di voler eliminare questo programma?')) return;
+
+    this.homePtSvc.deleteProgram(programId).subscribe({
+      next: () => {
+        this.notificationService.showNotificationMessage(
+          'Programma eliminato con successo!',
+          'success'
+        );
+        this.loadPrograms();
+      },
+      error: () => {
+        this.notificationService.showNotificationMessage(
+          'Errore durante l’eliminazione del programma!',
+          'error'
+        );
+      },
+    });
   }
 
   get weeks(): FormArray {
@@ -81,6 +141,10 @@ export class ProgrammiComponent implements OnInit {
 
   createProgram(): void {
     if (this.programForm.invalid) {
+      this.notificationService.showNotificationMessage(
+        'Compila tutti i campi richiesti prima di procedere!',
+        'warning'
+      );
       return;
     }
     this.homePtSvc.createProgram(this.programForm.value).subscribe({
@@ -226,10 +290,10 @@ export class ProgrammiComponent implements OnInit {
       exercisesArray.push(
         this.fb.group({
           exerciseId: [exerciseId],
-          sets: [null],
-          reps: [null],
+          sets: [null, Validators.required],
+          reps: [null, Validators.required],
           restType: [''],
-          restValue: [null],
+          restValue: [null, Validators.required],
         })
       );
     }
@@ -237,6 +301,7 @@ export class ProgrammiComponent implements OnInit {
 
   assignExercisesToWorkouts(): void {
     const assignmentObservables: Observable<any>[] = [];
+    let hasErrors = false;
     this.weeks.controls.forEach((weekCtrl: AbstractControl) => {
       const weekGroup = weekCtrl as FormGroup;
       const workoutsArray = weekGroup.get('workouts') as FormArray;
@@ -251,6 +316,11 @@ export class ProgrammiComponent implements OnInit {
             exerciseData.reps == null ||
             exerciseData.restValue == null
           ) {
+            this.notificationService.showNotificationMessage(
+              'I campi Sets, Reps e Rest devono essere compilati',
+              'error'
+            );
+            hasErrors = true;
             return;
           }
           const workoutExercisePayload = {
@@ -270,6 +340,9 @@ export class ProgrammiComponent implements OnInit {
         });
       });
     });
+
+    if (hasErrors) return;
+
     if (assignmentObservables.length > 0) {
       forkJoin(assignmentObservables).subscribe({
         next: () => {
@@ -277,6 +350,7 @@ export class ProgrammiComponent implements OnInit {
             'Programma completato con successo!',
             'success'
           );
+          this.resetForm();
         },
         error: () => {
           this.notificationService.showNotificationMessage(
@@ -291,6 +365,12 @@ export class ProgrammiComponent implements OnInit {
         'success'
       );
     }
+  }
+
+  resetForm(): void {
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   }
 
   isExerciseSelected(workoutCtrl: FormGroup, exerciseId: number): boolean {
