@@ -11,6 +11,7 @@ import { iExercise } from '../interfaces/i-exercise';
 import { iWeek } from '../interfaces/i-week';
 import { iWorkout } from '../interfaces/i-workout';
 import { iWorkoutExercise } from '../interfaces/i-workout-exercise';
+import { iProgramResponseDTO } from '../interfaces/i-program-response-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -147,5 +148,26 @@ export class HomePtService {
       totalPages: number;
       totalElements: number;
     }>(`${this.programmi}/my-programs`, { params });
+  }
+
+  assignProgramToClient(
+    programId: number,
+    clientId: number
+  ): Observable<iProgramResponseDTO> {
+    const url = `${this.programmi}/${programId}/assign/${clientId}`;
+
+    return this.http.post<iProgramResponseDTO>(url, null);
+  }
+
+  createExercise(exercise: iExercise): Observable<iExercise> {
+    return this.http.post<iExercise>(this.esercizi, exercise);
+  }
+
+  updateExercise(id: number, exercise: iExercise): Observable<iExercise> {
+    return this.http.put<iExercise>(`${this.esercizi}/${id}`, exercise);
+  }
+
+  deleteExercise(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.esercizi}/${id}`);
   }
 }

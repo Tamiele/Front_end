@@ -1,0 +1,25 @@
+<div class="assign-modal-overlay">
+  <div class="assign-modal">
+    <div class="assign-modal-header">
+      <h5>Assegna Programma</h5>
+      <button class="btn-close" (click)="close()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="assign-modal-body">
+      <p>Seleziona il cliente a cui assegnare il programma</p>
+      <div *ngIf="loading" class="loading">Caricamento clienti...</div>
+      <div *ngIf="!loading && clients.length === 0">
+        Nessun cliente trovato.
+      </div>
+      <ul *ngIf="!loading && clients.length > 0">
+        <li *ngFor="let client of clients">
+          <span>{{ client.nome }} {{ client.cognome }}</span>
+          <button class="btn-add" (click)="assignClient(client.id)">
+            Assegna
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

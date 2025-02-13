@@ -17,6 +17,7 @@ import { iWorkoutExercise } from '../../interfaces/i-workout-exercise';
 import { HomePtService } from '../home-pt.service';
 import { NotificationService } from '../../notifaction/notification.service';
 import { ModalService } from '../../modal/modal.service';
+import { iProgramResponseDTO } from '../../interfaces/i-program-response-dto';
 
 @Component({
   selector: 'app-programmi',
@@ -36,6 +37,11 @@ export class ProgrammiComponent implements OnInit {
   totalPages: number = 1;
   totalElements: number = 0;
   pageSize: number = 6;
+
+  assignPrograms: iProgramResponseDTO[] = [];
+
+  assignModalVisible: boolean = false;
+  selectedProgramIdForAssignment: number | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -398,5 +404,16 @@ export class ProgrammiComponent implements OnInit {
     return group
       ? (group.get(controlName) as FormControl)
       : new FormControl('');
+  }
+
+  openAssignModal(programId: number): void {
+    this.selectedProgramIdForAssignment = programId;
+    this.assignModalVisible = true;
+  }
+
+  // Metodo per chiudere il modale (ricevuto dal componente modale via output):
+  onModalClosed(closed: boolean): void {
+    this.assignModalVisible = false;
+    this.selectedProgramIdForAssignment = null;
   }
 }

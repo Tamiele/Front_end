@@ -13,6 +13,7 @@ import { NotifactionComponent } from '../notifaction/notifaction.component';
 import { ProgrammiComponent } from './programmi/programmi.component';
 import { EserciziComponent } from './esercizi/esercizi.component';
 import { ModalComponent } from '../modal/modal.component';
+import { AssignProgramModalComponent } from './assign-program-modal/assign-program-modal.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ModalComponent } from '../modal/modal.component';
     NotifactionComponent,
     ProgrammiComponent,
     EserciziComponent,
+    AssignProgramModalComponent,
   ],
   imports: [
     CommonModule,

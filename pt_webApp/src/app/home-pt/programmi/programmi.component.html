@@ -228,13 +228,22 @@
                 >
                   <i class="fas fa-trash-alt"></i> Elimina
                 </button>
-                <button class="btn-add flex-fill">
+                <button
+                  class="btn-add flex-fill"
+                  (click)="openAssignModal(program.id!)"
+                >
                   <i class="fas fa-user-plus"></i> Assegna
                 </button>
               </div>
             </div>
           </div>
         </div>
+        <app-assign-program-modal
+          *ngIf="assignModalVisible && selectedProgramIdForAssignment"
+          [programId]="selectedProgramIdForAssignment"
+          (closed)="onModalClosed($event)"
+        >
+        </app-assign-program-modal>
       </div>
 
       <!-- Paginazione -->

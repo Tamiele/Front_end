@@ -1,1 +1,124 @@
-<p>esercizi works!</p>
+<div class="container mt-4">
+  <!-- Form di Creazione (più piccolo) -->
+  <div class="creation-form-container">
+    <h3 class="text-center mb-3">Crea un Nuovo Esercizio</h3>
+    <form [formGroup]="exerciseForm" (ngSubmit)="createExercise()">
+      <div class="row">
+        <!-- Colonna 1 -->
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="name">Nome Esercizio</label>
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              class="global-form-control"
+              placeholder="Nome esercizio"
+            />
+          </div>
+          <div class="form-group">
+            <label for="muscleGroup">Gruppo Muscolare</label>
+            <select
+              id="muscleGroup"
+              formControlName="muscleGroup"
+              class="global-form-control"
+            >
+              <option value="">Seleziona il gruppo muscolare</option>
+              <option value="Pettorali">Pettorali</option>
+              <option value="Schiena">Schiena</option>
+              <option value="Gambe">Gambe</option>
+              <option value="Bicipiti">Bicipiti</option>
+              <option value="Tricipiti">Tricipiti</option>
+              <option value="Spalle">Spalle</option>
+              <option value="Addominali">Addominali</option>
+              <option value="Polpacci">Polpacci</option>
+            </select>
+          </div>
+        </div>
+        <!-- Colonna 2 -->
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="description">Descrizione</label>
+            <textarea
+              id="description"
+              formControlName="description"
+              class="global-form-control"
+              placeholder="Descrizione dell'esercizio"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <button type="submit" class="btn-add">Crea Esercizio</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Filtro per la lista degli esercizi -->
+  <div class="filter-container mb-3 mt-5">
+    <label for="filterMuscleGroup">Filtra per Gruppo Muscolare</label>
+    <select
+      id="filterMuscleGroup"
+      [(ngModel)]="selectedMuscleGroup"
+      (change)="onFilterChange()"
+      [ngModelOptions]="{ standalone: true }"
+      class="global-form-control"
+    >
+      <option value="">Tutti i gruppi muscolari</option>
+      <option value="Pettorali">Pettorali</option>
+      <option value="Schiena">Schiena</option>
+      <option value="Gambe">Gambe</option>
+      <option value="Bicipiti">Bicipiti</option>
+      <option value="Tricipiti">Tricipiti</option>
+      <option value="Spalle">Spalle</option>
+      <option value="Addominali">Addominali</option>
+      <option value="Polpacci">Polpacci</option>
+    </select>
+  </div>
+
+  <!-- Lista degli Esercizi con paginazione e animazione -->
+  <div *ngIf="fullExercises.length === 0">
+    <p class="text-center text-muted">Nessun esercizio trovato.</p>
+  </div>
+  <div class="row" *ngIf="fullExercises.length > 0">
+    <div
+      *ngFor="let exercise of displayedExercises; let i = index"
+      class="col-md-6 col-lg-4 mb-3 animated-card"
+      [style.animationDelay]="i * 0.3 + 's'"
+    >
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ exercise.name }}</h5>
+          <p class="card-text text-muted">{{ exercise.description }}</p>
+          <p class="card-text">
+            <small>Gruppo: {{ exercise.muscleGroup }}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paginazione -->
+  <div
+    class="d-flex justify-content-center align-items-center mt-3 gap-3"
+    *ngIf="totalPages > 1"
+  >
+    <button
+      class="btn-add"
+      (click)="goToPage(currentPage - 1)"
+      [disabled]="currentPage === 0"
+    >
+      &lt; Precedente
+    </button>
+    <span class="fw-bold"
+      >Pagina {{ currentPage + 1 }} di {{ totalPages }}</span
+    >
+    <button
+      class="btn-add"
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage + 1 >= totalPages"
+    >
+      Successivo &gt;
+    </button>
+  </div>
+</div>
