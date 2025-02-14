@@ -1,23 +1,54 @@
-<div>
-  <div class="flex-grow-1 d-flex flex-column fadeIn">
-    <div class="d-flex flex-column align-items-lg-end gap-5 p-4">
-      <div
-        class="col-12 col-lg-6 d-flex justify-content-lg-end justify-content-center"
-      >
-        <div class="cardCustom">
-          <p class="UserName m-0">Benvenuto {{ personalTrainer?.username }}</p>
+<div class="dashboard-container">
+  <!-- Header della dashboard -->
+  <div class="row justify-content-center align-items-center mt-5">
+    <div class="col-12">
+      <div class="flex-grow-1 d-flex flex-column">
+        <div class="d-flex flex-column align-items-lg-end gap-5 p-4">
+          <div
+            class="col-12 col-lg-6 d-flex justify-content-lg-end justify-content-center"
+          >
+            <div class="cardCustom">
+              <p class="UserName m-0">
+                Benvenuto {{ personalTrainer?.username }}
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6 d-flex align-self-lg-start">
+            <div class="description text-start cardCustom h-auto">
+              <p class="w-100">
+                Sei pronto a portare i tuoi clienti al livello successivo?<br /><br />
+                Qui puoi creare esercizi su misura, assegnare programmi
+                personalizzati e trovare nuovi clienti motivati.<br />
+                Costruisci il percorso perfetto per ogni atleta e diventa il
+                punto di riferimento per il loro successo.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="col-12 col-lg-6 d-flex align-self-lg-start">
-        <div class="description text-start cardCustom h-auto">
-          <p class="w-100">
-            Sei pronto a portare i tuoi clienti al livello successivo?<br /><br />
-            Qui puoi creare esercizi su misura, assegnare programmi
-            personalizzati e trovare nuovi clienti motivati. Non aspettare!
-            Costruisci il percorso perfetto per ogni atleta e diventa il punto
-            di riferimento per il loro successo.
-          </p>
+  <!-- Card della dashboard: utilizza una riga per le colonne -->
+  <div class="row justify-content-center mt-4 p-4">
+    <div class="col-12 col-md-4 mb-3">
+      <div class="card dashboard-card text-center animated-card">
+        <div class="card-body">
+          <h5 class="card-title">Cerca Nuovi Clienti</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4 mb-3">
+      <div class="card dashboard-card text-center animated-card">
+        <div class="card-body">
+          <h5 class="card-title">Crea e Assegna Programmi Personalizzati</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4 mb-3">
+      <div class="card dashboard-card text-center animated-card">
+        <div class="card-body">
+          <h5 class="card-title">Crea Nuovi Esercizi</h5>
         </div>
       </div>
     </div>

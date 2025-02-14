@@ -411,7 +411,6 @@ export class ProgrammiComponent implements OnInit {
     this.assignModalVisible = true;
   }
 
-  // Metodo per chiudere il modale (ricevuto dal componente modale via output):
   onModalClosed(closed: boolean): void {
     this.assignModalVisible = false;
     this.selectedProgramIdForAssignment = null;

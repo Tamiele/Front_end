@@ -1,31 +1,127 @@
+/* Contenitore principale: centro e sfondo semplice */
 .login-container {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 100vh;
   background: linear-gradient(135deg, #ffc278 5%, #9f3815 100%);
-  animation: bg-animation 10s infinite alternate;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-@keyframes bg-animation {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
-
-.login-box {
-  padding: 30px;
-  border-radius: 10px;
-  width: 350px;
+/* Card unificata per login e descrizione */
+.login-card {
   background: #f0ebe4;
+  border-radius: 10px;
   box-shadow: 0 0 15px rgba(159, 56, 21, 0.7);
-  text-align: center;
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
   animation: fadeIn 1s ease-in-out;
 }
 
+/* Header della card: logo, titolo e descrizione */
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo-img {
+  max-width: 100px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.login-title {
+  color: black;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.login-subtitle {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0;
+  text-align: start;
+}
+
+.highlight {
+  color: #c87340;
+}
+
+.login-form {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  color: black;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.invalid-feedback {
+  color: #ff4b4b;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.error-message {
+  color: #ff4b4b;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Pulsante di login */
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background: #ffc278;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-login:hover {
+  background: #ffcc8d;
+  box-shadow: 0 0 10px rgba(255, 204, 141, 0.8);
+}
+
+.btn-login:disabled {
+  background: #c87340;
+  cursor: not-allowed;
+}
+
+/* Link di registrazione */
+.register-link {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: black;
+}
+
+.register-link a {
+  color: #c87340;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+  color: #ff4b4b;
+}
+
+/* Animazione fadeIn */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -37,80 +133,9 @@
   }
 }
 
-.login-title {
-  color: black;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.login-subtitle {
-  color: #c87340;
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 20px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-label {
-  color: black;
-  font-weight: bold;
-}
-
-/* Errori */
-.invalid-feedback {
-  color: #ff4b4b;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-.error-message {
-  color: #ff4b4b;
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-.btn-login {
-  width: 100%;
-  padding: 12px;
-  background: #ffc278;
-  color: black;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.btn-login:hover {
-  background: #ffcc8d;
-  box-shadow: 0 0 10px rgba(#ffcc8d, 0.8);
-}
-
-.btn-login:disabled {
-  background: #c87340;
-  cursor: not-allowed;
-}
-
-/* Stile per il link di registrazione */
-.register-link {
-  margin-top: 15px;
-  color: black;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.register-link a {
-  color: #c87340;
-  font-weight: bold;
-  text-decoration: none;
-  transition: color 0.3s ease-in-out;
-}
-
-.register-link a:hover {
-  color: #ff4b4b;
+/* Media Query: dispositivi piccoli */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 20px;
+  }
 }
