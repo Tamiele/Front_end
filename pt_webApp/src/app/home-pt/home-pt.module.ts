@@ -21,7 +21,6 @@ import { AssignProgramModalComponent } from './assign-program-modal/assign-progr
     MyClientComponent,
     DashboardComponent,
     MyProfilComponent,
-    NotifactionComponent,
     ProgrammiComponent,
     EserciziComponent,
     AssignProgramModalComponent,

@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
             if (user.user.roles.includes('ROLE_PERSONAL_TRAINER')) {
               this.router.navigate(['/HomePt/dashboard']); // Rotta per Personal Trainer
             } else {
-              this.router.navigate(['/HomeClienti']); // Rotta per Clienti o altro ruolo
+              this.router.navigate(['/HomeClienti/dashboardClient']); // Rotta per Clienti o altro ruolo
             }
           } else {
             this.errorMessage = 'Errore nel recupero del ruolo utente.';

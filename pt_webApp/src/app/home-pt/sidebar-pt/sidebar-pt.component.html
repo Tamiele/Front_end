@@ -79,10 +79,10 @@
             <li class="nav-item">
               <a
                 class="nav-link px-2"
-                routerLink="/HomeClienti"
+                routerLink="/HomeClienti/dashboardClient"
                 routerLinkActive="active"
               >
-                Home
+                <i class="fas fa-home me-2"></i> Dashboard
               </a>
             </li>
             <li class="nav-item">
@@ -91,25 +91,16 @@
                 routerLink="/HomeClienti/allenamenti"
                 routerLinkActive="active"
               >
-                Allenamenti
+                <i class="fas fa-dumbbell me-2"></i> Allenamenti
               </a>
             </li>
             <li class="nav-item">
               <a
                 class="nav-link px-2"
-                routerLink="/HomeClienti/nutrizione"
+                routerLink="/HomeClienti/profiloCliente"
                 routerLinkActive="active"
               >
-                Nutrizione
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link px-2"
-                routerLink="/HomeClienti/impostazioni"
-                routerLinkActive="active"
-              >
-                Il Mio Profilo
+                <i class="fas fa-id-card me-2"></i> Il Mio Profilo
               </a>
             </li>
           </ng-container>
@@ -196,14 +187,17 @@
           </li>
         </ul>
         <!-- Menu Cliente -->
-        <ul class="nav flex-column text-white" *ngIf="hasRole('ROLE_USER')">
+        <ul
+          class="nav flex-column text-white text-start gap-3"
+          *ngIf="hasRole('ROLE_USER')"
+        >
           <li class="nav-item mb-2">
             <a
               class="nav-link"
-              routerLink="/HomeClienti"
+              routerLink="/HomeClienti/dashboardClient"
               routerLinkActive="active"
             >
-              <i class="fas fa-home me-2"></i> Home
+              <i class="fas fa-home me-2"></i> Dashboard
             </a>
           </li>
           <li class="nav-item mb-2">
@@ -215,19 +209,11 @@
               <i class="fas fa-dumbbell me-2"></i> Allenamenti
             </a>
           </li>
+
           <li class="nav-item mb-2">
             <a
               class="nav-link"
-              routerLink="/HomeClienti/nutrizione"
-              routerLinkActive="active"
-            >
-              <i class="bi bi-list-check"></i> Nutrizione
-            </a>
-          </li>
-          <li class="nav-item mb-2">
-            <a
-              class="nav-link"
-              routerLink="/HomeClienti/impostazioni"
+              routerLink="/HomeClienti/profiloCliente"
               routerLinkActive="active"
             >
               <i class="fas fa-id-card me-2"></i> Il Mio Profilo

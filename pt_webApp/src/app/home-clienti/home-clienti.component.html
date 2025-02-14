@@ -1,3 +1,9 @@
-<div class="d-flex vh-100">
-  <app-sidebar-pt class="sidebar"></app-sidebar-pt>
+<div class="d-flex flex-column flex-lg-row">
+  <app-sidebar-pt class="position-sticky top-0 z-3"></app-sidebar-pt>
+
+  <div class="w-100">
+    <router-outlet></router-outlet>
+  </div>
+  <app-notifaction></app-notifaction>
+  <app-modal></app-modal>
 </div>
