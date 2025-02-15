@@ -25,15 +25,15 @@ export class HomePtService {
 
   private assignClientUrl: string = environment.addClient;
 
-  private apiUrl = environment.personalTrainer;
+  private apiUrl: string = environment.personalTrainer;
 
-  private programmi = environment.programmi;
+  private programmi: string = environment.programmi;
 
-  private esercizi = environment.esercizi;
+  private esercizi: string = environment.esercizi;
 
-  private workout = environment.workout;
+  private workout: string = environment.workout;
 
-  private workoutExercise = environment.workoutExercise;
+  private workoutExercise: string = environment.workoutExercise;
 
   constructor(private http: HttpClient) {}
 

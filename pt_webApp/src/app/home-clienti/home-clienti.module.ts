@@ -7,9 +7,15 @@ import { SharedModule } from '../shared/shared.module';
 import { DashboardClientComponent } from './dashboard-client/dashboard-client.component';
 import { AllenamentiComponent } from './allenamenti/allenamenti.component';
 import { MyProfilClientComponent } from './my-profil-client/my-profil-client.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [HomeClientiComponent, DashboardClientComponent, AllenamentiComponent, MyProfilClientComponent],
-  imports: [CommonModule, HomeClientiRoutingModule, SharedModule],
+  declarations: [
+    HomeClientiComponent,
+    DashboardClientComponent,
+    AllenamentiComponent,
+    MyProfilClientComponent,
+  ],
+  imports: [CommonModule, HomeClientiRoutingModule, SharedModule, FormsModule],
 })
 export class HomeClientiModule {}

@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable()
@@ -28,6 +28,13 @@ export class TokenInterceptor implements HttpInterceptor {
       ),
     });
 
-    return next.handle(newRequest);
+    return next.handle(newRequest).pipe(
+      catchError((error) => {
+        if (error.status === 401) {
+          this.authSvc.logout();
+        }
+        return throwError(() => error);
+      })
+    );
   }
 }

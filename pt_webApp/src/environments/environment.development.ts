@@ -14,5 +14,7 @@ export const environment = {
   esercizi: 'http://localhost:8080/api/exercises',
   workout: 'http://localhost:8080/api/weeks',
   workoutExercise: 'http://localhost:8080/api/workouts',
+
   //Clienti
+  clienti: 'http://localhost:8080/api/clienti',
 };

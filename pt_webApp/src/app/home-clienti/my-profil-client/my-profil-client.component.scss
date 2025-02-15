@@ -1,0 +1,43 @@
+/* Profilo */
+.profile-container {
+  flex-grow: 1;
+  padding: 40px;
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Titolo */
+.profile-title {
+  font-size: 1.4rem;
+  color: black;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Info Profilo */
+.profile-info {
+  background: white;
+  padding: 15px;
+
+  border-radius: 8px;
+  color: black;
+  text-align: left;
+}
+
+.profile-info p {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+/* Pulsanti Salva e Annulla */
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}

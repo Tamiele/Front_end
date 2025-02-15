@@ -21,7 +21,6 @@ export class MyProfilComponent implements OnInit {
 
   constructor(
     private homePtsvc: HomePtService,
-    private router: Router,
     private ntfService: NotificationService,
     private authService: AuthenticationService,
     private modalService: ModalService

@@ -1,1 +1,47 @@
-<p>my-profil-client works!</p>
+<div class="mt-5">
+  <div class="flex-grow-1 d-flex">
+    <div class="profile-container">
+      <h2 class="profile-title">I Tuoi Dati</h2>
+
+      <div *ngIf="cliente" class="profile-content">
+        <div class="profile-info">
+          <p><strong>Username:</strong> {{ cliente.username }}</p>
+          <p><strong>Email:</strong> {{ cliente.email }}</p>
+          <p><strong>Nome:</strong> {{ cliente.nome }}</p>
+          <p><strong>Cognome:</strong> {{ cliente.cognome }}</p>
+          <p><strong>Data di Nascita:</strong> {{ cliente.dataDiNascita }}</p>
+        </div>
+
+        <button class="btn-add m-2" (click)="enableEdit()">Modifica</button>
+        <button class="btn-remove" (click)="deleteAccount()">
+          Elimina Account
+        </button>
+
+        <div *ngIf="isEditing" class="mt-2">
+          <input
+            class="global-form-control mt-2"
+            type="text"
+            [(ngModel)]="cliente.nome"
+            placeholder="Nuovo Cognome"
+          />
+          <input
+            class="global-form-control mt-2"
+            type="text"
+            [(ngModel)]="cliente.cognome"
+            placeholder="Nuovo Cognome"
+          />
+          <input
+            class="global-form-control mt-2"
+            type="date"
+            [(ngModel)]="cliente.dataDiNascita"
+          />
+
+          <div class="button-group">
+            <button class="btn-add" (click)="saveChanges()">Salva</button>
+            <button class="btn-remove" (click)="cancelEdit()">Annulla</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
