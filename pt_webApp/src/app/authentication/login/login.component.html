@@ -1,79 +1,95 @@
 <div class="login-container d-flex justify-content-center align-items-center">
-  <div class="login-card">
-    <div class="login-header">
-      <img src="/img/Logo.png" alt="Logo" class="logo-img" />
-      <h2 class="login-title">Benvenuto su PT-Nexus!</h2>
-      <p class="login-subtitle">
-        Trasforma il tuo allenamento quotidiano in un percorso di benessere e
-        performance. Con <strong class="highlight">PT-Nexus</strong> pianifichi,
-        monitori e migliori la tua forma fisica grazie a piani personalizzati e
-        una community motivante.
+  <div class="row align-items-center justify-content-center">
+    <div>
+      <h1 class="login-title text-center">Benvenuto su PT-Nexus</h1>
+      <p class="login-subtitle text-center">
+        Pianifichi, monitori e migliori la tua forma fisica grazie a piani
+        personalizzati e una community motivante.
       </p>
     </div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          formControlName="username"
-          class="global-form-control"
-          [ngClass]="{
-            'is-invalid':
+    <div class="col-12 col-lg-4 animate-fadeInLeft d-flex justify-content-end">
+      <div class="mx-auto mx-lg-0">
+        <img src="img/img7.png" alt="Esempio" class="hero-img1" />
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4 login-card animate-fadeInUp">
+      <div class="login-header">
+        <img src="/img/Logo.png" alt="Logo" class="logo-img" />
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            formControlName="username"
+            class="global-form-control"
+            [ngClass]="{
+              'is-invalid':
+                loginForm.get('username')?.invalid &&
+                loginForm.get('username')?.touched
+            }"
+          />
+          <div
+            *ngIf="
               loginForm.get('username')?.invalid &&
               loginForm.get('username')?.touched
-          }"
-        />
-        <div
-          *ngIf="
-            loginForm.get('username')?.invalid &&
-            loginForm.get('username')?.touched
-          "
-          class="invalid-feedback"
-        >
-          Username richiesto.
+            "
+            class="invalid-feedback"
+          >
+            Username richiesto.
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          formControlName="password"
-          class="global-form-control"
-          [ngClass]="{
-            'is-invalid':
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            class="global-form-control"
+            [ngClass]="{
+              'is-invalid':
+                loginForm.get('password')?.invalid &&
+                loginForm.get('password')?.touched
+            }"
+          />
+          <div
+            *ngIf="
               loginForm.get('password')?.invalid &&
               loginForm.get('password')?.touched
-          }"
-        />
-        <div
-          *ngIf="
-            loginForm.get('password')?.invalid &&
-            loginForm.get('password')?.touched
-          "
-          class="invalid-feedback"
-        >
-          La password è obbligatoria (minimo 6 caratteri).
+            "
+            class="invalid-feedback"
+          >
+            La password è obbligatoria (minimo 6 caratteri).
+          </div>
         </div>
+
+        <button class="btn-login" type="submit" [disabled]="loginForm.invalid">
+          Accedi
+        </button>
+
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+      </form>
+
+      <div class="register-link">
+        <p>
+          Non hai un account?
+          <a routerLink="/authentication/register">Registrati qui</a>
+        </p>
       </div>
+    </div>
 
-      <button class="btn-login" type="submit" [disabled]="loginForm.invalid">
-        Accedi
-      </button>
-
-      <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
-      </div>
-    </form>
-
-    <div class="register-link">
-      <p>
-        Non hai un account?
-        <a routerLink="/authentication/register">Registrati qui</a>
-      </p>
+    <!-- Sezione Destra: Immagine -->
+    <div
+      class="col-12 col-lg-4 d-flex justify-content-start animate-fadeInRight p-0"
+    >
+      <img src="img/img6.png" alt="Esempio" class="hero-img2" />
     </div>
   </div>
 </div>
