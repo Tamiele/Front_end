@@ -3,9 +3,9 @@
   <div class="creation-form-container">
     <h3 class="text-center mb-3">Crea un Nuovo Esercizio</h3>
     <form [formGroup]="exerciseForm" (ngSubmit)="createExercise()">
-      <div class="row">
+      <div class="row flex-column align-items-center">
         <!-- Colonna 1 -->
-        <div class="col-12 col-md-6">
+        <div class="col-12">
           <div class="form-group">
             <label for="name">Nome Esercizio</label>
             <input
@@ -36,7 +36,7 @@
           </div>
         </div>
         <!-- Colonna 2 -->
-        <div class="col-12 col-md-6">
+        <div class="col-12">
           <div class="form-group">
             <label for="description">Descrizione</label>
             <textarea

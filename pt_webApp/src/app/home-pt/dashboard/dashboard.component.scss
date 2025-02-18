@@ -1,34 +1,76 @@
+/* Contenitore principale */
 .dashboard-container {
-  overflow: hidden;
+  padding: 20px;
 }
+
+/* Immagine Dashboard */
+.hero-dashboard {
+  max-width: 350px;
+
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.cardCustomDescription {
+  width: 100%;
+  color: black;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.userName {
+  font-size: 3rem;
+}
+
+/* Descrizione */
 .description {
-  font-size: 1.2rem;
-  font-weight: 500;
-  padding: 1rem;
-}
-
-/* Nome Utente */
-.UserName {
   font-size: 1.4rem;
-  font-weight: bold;
 }
 
+/* Card della Dashboard */
 .dashboard-card {
-  max-width: 400px;
-  border: none;
+  background: white;
+  color: black;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 20px;
-  animation: fadeIn 1.5s ease-in-out;
+  padding: 20px;
+  box-shadow: 0px 0px 20px 8px rgba(17, 17, 26, 0.08);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.dashboard-card a {
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
 }
 
 .dashboard-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
 }
 
-.dashboard-card .card-title {
-  font-size: 1.2rem;
-  font-weight: 600;
+/* Animazioni */
+.animated-card {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+/* Animazione fadeIn */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .hero-dashboard {
+    display: none;
+  }
+
+  .description {
+    margin-top: 10px;
+  }
 }

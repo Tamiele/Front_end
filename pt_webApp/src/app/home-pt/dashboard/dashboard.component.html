@@ -1,54 +1,56 @@
 <div class="dashboard-container">
-  <!-- Header della dashboard -->
-  <div class="row justify-content-center align-items-center mt-5">
-    <div class="col-12">
-      <div class="flex-grow-1 d-flex flex-column">
-        <div class="d-flex flex-column align-items-lg-end gap-5 p-4">
-          <div
-            class="col-12 col-lg-6 d-flex justify-content-lg-end justify-content-center"
-          >
-            <div class="cardCustom">
-              <p class="UserName m-0">
-                Benvenuto {{ personalTrainer?.username }}
-              </p>
-            </div>
-          </div>
-          <div class="col-12 col-lg-6 d-flex align-self-lg-start">
-            <div class="description text-start cardCustom h-auto">
-              <p class="w-100">
-                Sei pronto a portare i tuoi clienti al livello successivo?<br /><br />
-                Qui puoi creare esercizi su misura, assegnare programmi
-                personalizzati e trovare nuovi clienti motivati.<br />
-                Costruisci il percorso perfetto per ogni atleta e diventa il
-                punto di riferimento per il loro successo.
-              </p>
-            </div>
-          </div>
-        </div>
+  <div class="row align-items-center justify-content-center p-4">
+    <div class="col-12 col-lg-6 d-flex flex-column">
+      <div class="cardCustom mb-3 mx-auto">
+        <p class="userName m-0">Benvenuto {{ personalTrainer?.username }}</p>
+      </div>
+      <div class="mx-auto">
+        <img
+          class="hero-dashboard my-4"
+          src="img/img14.png"
+          alt="Dashboard Hero"
+        />
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6 text-start">
+      <div class="description">
+        <p>
+          Sei pronto a portare i tuoi clienti al livello successivo?<br /><br />
+          Qui puoi creare esercizi su misura, assegnare programmi personalizzati
+          e trovare nuovi clienti motivati.<br />
+          Costruisci il percorso perfetto per ogni atleta e diventa il punto di
+          riferimento per il loro successo.
+        </p>
       </div>
     </div>
   </div>
 
-  <!-- Card della dashboard: utilizza una riga per le colonne -->
-  <div class="row justify-content-center mt-4 p-4">
-    <div class="col-12 col-md-4 mb-3">
-      <div class="card dashboard-card text-center animated-card">
+  <div class="row justify-content-center mt-4 p-4 gap-3">
+    <div class="col-12 col-md-4">
+      <div class="dashboard-card text-center animated-card">
         <div class="card-body">
-          <h5 class="card-title">Cerca Nuovi Clienti</h5>
+          <a class="card-title" routerLink="/HomePt/clienti"
+            >Cerca Nuovi Clienti</a
+          >
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-4 mb-3">
-      <div class="card dashboard-card text-center animated-card">
+    <div class="col-12 col-md-4">
+      <div class="dashboard-card text-center animated-card">
         <div class="card-body">
-          <h5 class="card-title">Crea e Assegna Programmi Personalizzati</h5>
+          <a class="card-title" routerLink="/HomePt/programmi"
+            >Crea e Assegna Programmi Personalizzati</a
+          >
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-4 mb-3">
-      <div class="card dashboard-card text-center animated-card">
+    <div class="col-12 col-md-4">
+      <div class="dashboard-card text-center animated-card">
         <div class="card-body">
-          <h5 class="card-title">Crea Nuovi Esercizi</h5>
+          <a class="card-title" routerLink="/HomePt/esercizi"
+            >Crea Nuovi Esercizi</a
+          >
         </div>
       </div>
     </div>
