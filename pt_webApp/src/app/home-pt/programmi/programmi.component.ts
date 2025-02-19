@@ -291,23 +291,33 @@ export class ProgrammiComponent implements OnInit {
     });
   }
 
-  toggleExercise(workoutCtrl: FormGroup, exerciseId: number): void {
+  toggleExercise(workoutCtrl: FormGroup, exercise: iExercise): void {
     const exercisesArray = workoutCtrl.get('exercises') as FormArray;
     const existingIndex = exercisesArray.controls.findIndex(
-      (control) => control.value.exerciseId === exerciseId
+      (control) => control.value.exerciseId === exercise.id
     );
     if (existingIndex >= 0) {
       exercisesArray.removeAt(existingIndex);
+
+      const exIndex = this.exercises.findIndex((ex) => ex.id === exercise.id);
+      if (exIndex >= 0) {
+        (this.exercises[exIndex] as any).selected = false;
+      }
     } else {
       exercisesArray.push(
         this.fb.group({
-          exerciseId: [exerciseId],
+          exerciseId: [exercise.id],
           sets: [null, Validators.required],
           reps: [null, Validators.required],
           restType: [''],
           restValue: [null, Validators.required],
         })
       );
+
+      const exIndex = this.exercises.findIndex((ex) => ex.id === exercise.id);
+      if (exIndex >= 0) {
+        (this.exercises[exIndex] as any).selected = true;
+      }
     }
   }
 

@@ -18,14 +18,13 @@
           formControlName="name"
           type="text"
           class="global-form-control"
-          placeholder="es. Potenziamento Forza"
           required
         />
         <label>Descrizione</label>
         <textarea
           formControlName="description"
           class="global-form-control"
-          placeholder="Descrizione"
+          placeholder="es. Potenziamento Forza"
         ></textarea>
         <label>
           <input type="checkbox" formControlName="template" /> Questo programma
@@ -101,13 +100,19 @@
           >
             <option value="">Tutti i gruppi muscolari</option>
             <option value="Pettorali">Pettorali</option>
-            <option value="Schiena">Schiena</option>
-            <option value="Gambe">Gambe</option>
+            <option value="Dorsali">Dorsali</option>
+            <option value="Quadricipiti">Quadricipiti</option>
+            <option value="Abduttori">Abduttori</option>
+            <option value="Adduttori">Adduttori</option>
+            <option value="Glutei">Glutei</option>
+            <option value="Femorali">Femorali</option>
+            <option value="Polpacci">Polpacci</option>
+            <option value="Avambracci">Avambracci</option>
+            <option value="Trapezio">Trapezio</option>
             <option value="Bicipiti">Bicipiti</option>
             <option value="Tricipiti">Tricipiti</option>
             <option value="Spalle">Spalle</option>
             <option value="Addominali">Addominali</option>
-            <option value="Polpacci">Polpacci</option>
           </select>
         </div>
 
@@ -136,14 +141,17 @@
                 <label class="mb-2">Seleziona gli esercizi:</label>
                 <div *ngFor="let exercise of exercises" class="exercise-row">
                   <div class="exercise-label">
+                    <!-- Passa l'oggetto exercise intero invece dell'id -->
                     <input
                       class="input-exercises"
                       type="checkbox"
                       [value]="exercise.id"
-                      (change)="toggleExercise(workoutCtrl, exercise.id)"
+                      (change)="toggleExercise(workoutCtrl, exercise)"
+                      [checked]="isExerciseSelected(workoutCtrl, exercise.id)"
                     />
-                    <span>{{ exercise.name }} </span>
+                    <span>{{ exercise.name }}</span>
                   </div>
+                  <!-- Visualizza i campi di dettaglio solo se l'esercizio è selezionato -->
                   <div
                     *ngIf="isExerciseSelected(workoutCtrl, exercise.id)"
                     class="exercise-inputs"

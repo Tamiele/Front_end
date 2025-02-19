@@ -117,8 +117,8 @@
 </div>
 
 <!-- Sezione Desktop: visibile solo su dispositivi grandi -->
-<div class="d-none d-lg-block">
-  <nav class="sidebar text-center">
+<div class="d-none d-lg-block h-100">
+  <nav class="sidebar text-center position-sticky top-0 z-3">
     <div class="">
       <!-- Logo -->
       <div class="py-3 mb-3">
@@ -180,7 +180,7 @@
               <i class="fas fa-id-card me-2"></i> Il Mio Profilo
             </a>
           </li>
-          <li class="nav-item mb-2">
+          <li class="nav-item">
             <a class="nav-link" (click)="logOut()">
               <i class="fas fa-sign-out-alt me-2"></i> Logout
             </a>
