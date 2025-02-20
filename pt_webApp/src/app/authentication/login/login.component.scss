@@ -105,6 +105,7 @@ label {
   font-size: 14px;
   font-weight: 500;
   color: black;
+  margin-top: 10px;
 }
 
 .register-link a {
@@ -115,18 +116,20 @@ label {
 }
 
 .register-link a:hover {
-  color: #ff4b4b;
+  color: #ffc278;
 }
 
 .hero-img1 {
   width: 400px;
   animation: fadeIn 1.5s ease-in-out;
+  filter: drop-shadow(8px 8px 8px #000000a6);
 }
 
 /* Hero Image */
 .hero-img2 {
   max-width: 422px;
   animation: fadeIn 1.5s ease-in-out;
+  filter: drop-shadow(8px 8px 8px #000000a6);
 }
 
 /* ANIMAZIONI */
