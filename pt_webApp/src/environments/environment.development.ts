@@ -1,20 +1,19 @@
-import { EserciziComponent } from '../app/home-pt/esercizi/esercizi.component';
-
 export const environment = {
-  registerUrl: 'http://localhost:8080/api/auth/register',
-  loginUrl: 'http://localhost:8080/api/auth/login',
+  registerUrl: 'https://pt-web-latest.onrender.com/api/auth/register',
+  loginUrl: 'https://pt-web-latest.onrender.com/api/auth/login',
 
   //personalTrainer
-  clientFavPtUrl: 'http://localhost:8080/api/clienti/myClient',
-  removeFavPt: 'http://localhost:8080/api/trainer/remove-client',
-  searchClient: 'http://localhost:8080/api/clienti/search-clients-byTrainer',
-  addClient: 'http://localhost:8080/api/trainer/assign-client',
-  personalTrainer: 'http://localhost:8080/api/trainer',
-  programmi: 'http://localhost:8080/api/programmi',
-  esercizi: 'http://localhost:8080/api/exercises',
-  workout: 'http://localhost:8080/api/weeks',
-  workoutExercise: 'http://localhost:8080/api/workouts',
+  clientFavPtUrl: 'https://pt-web-latest.onrender.com/api/clienti/myClient',
+  removeFavPt: 'https://pt-web-latest.onrender.com/api/trainer/remove-client',
+  searchClient:
+    'https://pt-web-latest.onrender.com/api/clienti/search-clients-byTrainer',
+  addClient: 'https://pt-web-latest.onrender.com/api/trainer/assign-client',
+  personalTrainer: 'https://pt-web-latest.onrender.com/api/trainer',
+  programmi: 'https://pt-web-latest.onrender.com/api/programmi',
+  esercizi: 'https://pt-web-latest.onrender.com/api/exercises',
+  workout: 'https://pt-web-latest.onrender.com/api/weeks',
+  workoutExercise: 'https://pt-web-latest.onrender.com/api/workouts',
 
   //Clienti
-  clienti: 'http://localhost:8080/api/clienti',
+  clienti: 'https://pt-web-latest.onrender.com/api/clienti',
 };
