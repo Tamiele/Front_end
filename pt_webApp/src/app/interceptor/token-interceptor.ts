@@ -16,22 +16,24 @@ export class TokenInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const accessData = this.authSvc.authSubject$.getValue();
+    const accessData = localStorage.getItem('accessData');
+
     if (!accessData) {
+      this.authSvc.logout(); // Token non esiste → logout
       return next.handle(request);
     }
 
+    const parsedAccessData = JSON.parse(accessData);
+    const token = parsedAccessData.token;
+
     const newRequest = request.clone({
-      headers: request.headers.append(
-        'Authorization',
-        `Bearer ${accessData.token}`
-      ),
+      headers: request.headers.set('Authorization', `Bearer ${token}`),
     });
 
     return next.handle(newRequest).pipe(
       catchError((error) => {
         if (error.status === 401) {
-          this.authSvc.logout();
+          this.authSvc.logout(); // Token scaduto → logout
         }
         return throwError(() => error);
       })
