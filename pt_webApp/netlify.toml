@@ -1,8 +1,9 @@
 [build]
-  command = "ng build --configuration=production"
-  publish = "dist/pt-web-app/browser"
+base = "pt_webApp"
+publish = "dist/pt-web-app"
+command = "ng build --configuration=production"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200
