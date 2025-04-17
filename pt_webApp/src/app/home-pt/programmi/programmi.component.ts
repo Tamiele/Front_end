@@ -68,7 +68,6 @@ export class ProgrammiComponent implements OnInit {
         this.programs = response.content;
         this.totalPages = response.totalPages;
         this.totalElements = response.totalElements;
-        console.log(this.programs);
       },
       error: () => {
         this.notificationService.showNotificationMessage(
