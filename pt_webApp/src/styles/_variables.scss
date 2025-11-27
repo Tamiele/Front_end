@@ -1,1 +1,31 @@
+@use "sass:color";
 
+$color-primary: #c87340;
+$color-primary-dark: #9f3815;
+$color-accent: #ffc278;
+$color-accent-light: #ffcc8d;
+$color-surface: #ffffff;
+$color-surface-muted: #f0ebe4;
+$color-grey: #666666;
+$color-grey-border: #cccccc;
+$color-error: #ff4b4b;
+$color-success: #28a745;
+$color-warning: #f4a700;
+$text-dark: #000000;
+$text-light: #ffffff;
+
+$shadow-color: rgba(17, 17, 26, 0.08);
+$shadow-lg: 0px 0px 20px 8px $shadow-color;
+$shadow-xl: 0px 0px 20px 16px $shadow-color;
+
+$border-radius-sm: 5px;
+$border-radius-md: 10px;
+
+$button-padding: 12px;
+$transition-base: 0.3s ease-in-out;
+
+$gradient-primary: linear-gradient(
+  135deg,
+  $color-accent 5%,
+  $color-primary-dark 100%
+);

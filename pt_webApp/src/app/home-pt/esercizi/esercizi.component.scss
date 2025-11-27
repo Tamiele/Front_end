@@ -1,3 +1,6 @@
+@use "mixins" as mix;
+@use "variables" as vars;
+
 /* Stili per il form di creazione più compatto */
 
 .containerPage {
@@ -8,28 +11,14 @@
 .creation-form-container {
   max-width: 450px;
   margin: 0 auto 20px;
-  padding: 15px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 0px 20px 8px rgba(17, 17, 26, 0.08);
-  transition: all 0.3s ease-in-out;
-  animation: fadeIn 0.6s ease-in-out;
+  @include mix.surface-card(15px, vars.$border-radius-md);
+  transition: vars.$transition-base;
+  @include mix.fade-in(0.6s);
 }
 
 .animated-card {
   opacity: 0;
-  animation: fadeInUp 0.6s forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  @include mix.fade-in-up(0.6s);
 }
 
 .filter-container {

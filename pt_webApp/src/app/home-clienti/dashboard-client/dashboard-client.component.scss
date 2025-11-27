@@ -1,3 +1,6 @@
+@use "mixins" as mix;
+@use "variables" as vars;
+
 .dashboard-container {
   padding: 20px;
 }
@@ -12,13 +15,9 @@
 }
 
 .dashboard-card {
-  background: white;
-  color: black;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0px 0px 20px 8px rgba(17, 17, 26, 0.08);
-  transition: transform 0.3s ease-in-out;
+  @include mix.surface-card(20px);
   cursor: pointer;
+  @include mix.hover-raise;
 }
 
 .dashboard-card a {
@@ -27,37 +26,20 @@
   text-decoration: none;
 }
 
-.dashboard-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
-}
-
 .animated-card {
-  animation: fadeInUp 1s ease-in-out;
-}
-
-/* Animazione fadeIn */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  @include mix.fade-in-up(1s);
 }
 
 .hero-dashboard {
   max-width: 350px;
   filter: drop-shadow(2px 5px 5px #000000a6);
-  animation: fadeIn 0.6s ease-in-out;
+  @include mix.fade-in(0.6s);
 }
 
 .cardCustomDescription {
   width: 100%;
-  color: black;
-  animation: fadeIn 0.6s ease-in-out;
+  color: vars.$text-dark;
+  @include mix.fade-in(0.6s);
 }
 
 /* Responsive */

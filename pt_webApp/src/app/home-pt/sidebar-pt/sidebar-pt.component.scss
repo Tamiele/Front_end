@@ -1,11 +1,15 @@
+@use "mixins" as mix;
+@use "variables" as vars;
+
 .sidebar {
   width: 250px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffc278 5%, #9f3815 100%);
+  @include mix.gradient-background();
+  color: vars.$text-dark;
 }
 
 .sidebar .nav-link {
-  color: black;
+  color: vars.$text-dark;
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
@@ -13,12 +17,12 @@
 
 .sidebar .nav-link:hover,
 .sidebar .nav-link.active {
-  background-color: #ffc278;
-  border-radius: 5px;
+  background-color: vars.$color-accent;
+  border-radius: vars.$border-radius-sm;
 }
 
 .navbar .nav-link {
-  color: black;
+  color: vars.$text-dark;
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
@@ -26,12 +30,12 @@
 
 .navbar .nav-link:hover,
 .navbar .nav-link.active {
-  background-color: #ffc278;
-  border-radius: 5px;
+  background-color: vars.$color-accent;
+  border-radius: vars.$border-radius-sm;
 }
 
 .nav-backgound {
-  background: linear-gradient(135deg, #ffc278 5%, #9f3815 100%);
+  @include mix.gradient-background();
 }
 
 .button-menu {
@@ -39,4 +43,5 @@
   background: none;
   font-size: 2rem;
   font-weight: bold;
+  color: vars.$text-dark;
 }

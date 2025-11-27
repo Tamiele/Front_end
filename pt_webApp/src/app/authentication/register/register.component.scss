@@ -1,10 +1,11 @@
+@use "mixins" as mix;
+@use "variables" as vars;
+
 /* Sfondo dinamico */
 .register-container {
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #ffc278 5%, #9f3815 100%);
+  @include mix.flex-center(column);
+  @include mix.gradient-background();
   animation: bg-animation 10s infinite alternate;
 }
 
@@ -19,36 +20,22 @@
 
 /* Box di registrazione */
 .register-box {
-  background: #f0ebe4;
-  padding: 30px;
-  border-radius: 10px;
+  @include mix.surface-card(30px);
   width: 550px;
-  box-shadow: 0 0 15px rgba(159, 56, 21, 0.7);
   text-align: center;
-  animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  @include mix.fade-in(1s);
 }
 
 /* Titolo */
 .register-title {
-  color: black;
+  color: vars.$text-dark;
   font-size: 24px;
   font-weight: bold;
 }
 
 /* Sottotitolo */
 .register-subtitle {
-  color: #c87340;
+  color: vars.$color-primary;
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 20px;
@@ -60,19 +47,19 @@
 }
 
 label {
-  color: black;
+  color: vars.$text-dark;
   font-weight: bold;
 }
 
 /* Errori */
 .invalid-feedback {
-  color: #ff4b4b;
+  color: vars.$color-error;
   font-size: 14px;
   margin-top: 5px;
 }
 
 .error-message {
-  color: #ff4b4b;
+  color: vars.$color-error;
   margin-top: 10px;
   font-weight: bold;
 }
@@ -80,44 +67,35 @@ label {
 /* Pulsante di registrazione */
 .btn-register {
   width: 100%;
-  padding: 12px;
-  background: #ffc278;
-  color: black;
-  border: none;
-  border-radius: 5px;
   font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  @include mix.button-filled(vars.$color-accent, vars.$text-dark);
 }
 
 .btn-register:hover {
-  background: #ffcc8d;
-  box-shadow: 0 0 10px rgba(#ffcc8d, 0.8);
+  box-shadow: 0 0 10px rgba(vars.$color-accent-light, 0.8);
 }
 
 .btn-register:disabled {
-  background: #c87340;
-  cursor: not-allowed;
+  background: vars.$color-primary;
 }
 
 /* Link per il login */
 .login-link {
   margin-top: 15px;
-  color: black;
+  color: vars.$text-dark;
   font-size: 14px;
   font-weight: 500;
 }
 
 .login-link a {
-  color: #c87340;
+  color: vars.$color-primary;
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease-in-out;
 }
 
 .login-link a:hover {
-  color: #ffc278;
+  color: vars.$color-accent;
 }
 
 /* Stile per il toggle switch */
@@ -125,7 +103,7 @@ label {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: black;
+  color: vars.$text-dark;
   font-size: 14px;
   margin-top: 10px;
   font-weight: 500;
@@ -154,7 +132,7 @@ label {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #444;
+  background-color: vars.$color-grey;
   transition: 0.4s;
   border-radius: 34px;
 }
@@ -174,7 +152,7 @@ label {
 
 /* Quando attivo cambia colore */
 .switch input:checked + .slider {
-  background-color: #c87340;
+  background-color: vars.$color-primary;
 }
 
 /* Sposta il cerchio */

@@ -1,24 +1,27 @@
+@use "mixins" as mix;
+@use "variables" as vars;
+
 /* Contenitore principale */
 .login-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffc278 5%, #9f3815 100%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include mix.gradient-background();
+  @include mix.flex-center();
   padding: 20px;
   overflow: hidden;
 }
 
 /* Card unificata per login e descrizione */
 .login-card {
-  background: #f0ebe4;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
-  padding: 30px;
+  @include mix.surface-card(
+    30px,
+    vars.$border-radius-md,
+    vars.$color-surface-muted,
+    vars.$shadow-xl
+  );
   max-width: 400px;
   width: 100%;
   max-height: 500px;
-  animation: fadeInUp 1s ease-in-out;
+  @include mix.fade-in-up(1s);
 }
 
 /* Header della card: logo, titolo e descrizione */
@@ -34,7 +37,7 @@
 }
 
 .login-title {
-  color: black;
+  color: vars.$text-dark;
   font-size: 50px;
   font-weight: 500;
   margin-bottom: 10px;
@@ -47,7 +50,7 @@
 }
 
 .highlight {
-  color: #c87340;
+  color: vars.$color-primary;
 }
 
 .form-group {
@@ -57,19 +60,19 @@
 
 label {
   font-weight: bold;
-  color: black;
+  color: vars.$text-dark;
   display: block;
   margin-bottom: 5px;
 }
 
 .invalid-feedback {
-  color: #ff4b4b;
+  color: vars.$color-error;
   font-size: 14px;
   margin-top: 5px;
 }
 
 .error-message {
-  color: #ff4b4b;
+  color: vars.$color-error;
   font-weight: bold;
   text-align: center;
   margin-top: 10px;
@@ -78,25 +81,16 @@ label {
 /* Pulsante di login */
 .btn-login {
   width: 100%;
-  padding: 12px;
-  background: #ffc278;
-  color: black;
-  border: none;
-  border-radius: 5px;
   font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
+  @include mix.button-filled(vars.$color-accent, vars.$text-dark);
 }
 
 .btn-login:hover {
-  background: #ffcc8d;
-  box-shadow: 0 0 10px rgba(255, 204, 141, 0.8);
+  box-shadow: 0 0 10px rgba(vars.$color-accent-light, 0.8);
 }
 
 .btn-login:disabled {
-  background: #c87340;
-  cursor: not-allowed;
+  background: vars.$color-primary;
 }
 
 /* Link di registrazione */
@@ -104,66 +98,32 @@ label {
   text-align: center;
   font-size: 14px;
   font-weight: 500;
-  color: black;
+  color: vars.$text-dark;
   margin-top: 10px;
 }
 
 .register-link a {
-  color: #c87340;
+  color: vars.$color-primary;
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .register-link a:hover {
-  color: #ffc278;
+  color: vars.$color-accent;
 }
 
 .hero-img1 {
   width: 400px;
-  animation: fadeIn 1.5s ease-in-out;
+  @include mix.fade-in(1.5s);
   filter: drop-shadow(8px 8px 8px #000000a6);
 }
 
 /* Hero Image */
 .hero-img2 {
   max-width: 422px;
-  animation: fadeIn 1.5s ease-in-out;
+  @include mix.fade-in(1.5s);
   filter: drop-shadow(8px 8px 8px #000000a6);
-}
-
-/* ANIMAZIONI */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 /* MEDIA QUERIES */

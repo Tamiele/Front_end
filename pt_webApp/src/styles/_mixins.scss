@@ -1,30 +1,110 @@
+@use "sass:color";
+@use "./variables" as vars;
+
 // ✨ Effetto Glow sugli input e pulsanti
 @mixin glow-effect {
-  transition: all 0.3s ease-in-out;
+  transition: vars.$transition-base;
+
   &:focus {
-    border-color: $primary-color;
-    box-shadow: 0 0 10px rgba(159, 56, 21, 0.7);
+    border-color: vars.$color-accent;
+    box-shadow: 0 0 10px rgba(vars.$color-accent, 0.5);
   }
 }
 
-// 🎨 Stile per i pulsanti
-@mixin button-style {
-  padding: $button-padding;
-  background: $primary-color;
-  color: $text-color;
+// 🎨 Stile per i pulsanti pieni
+@mixin button-filled($bg: vars.$color-primary, $text: vars.$text-light) {
+  padding: vars.$button-padding;
+  background: $bg;
+  color: $text;
   border: none;
-  border-radius: $border-radius;
+  border-radius: vars.$border-radius-sm;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+  transition: vars.$transition-base;
 
-  &:hover {
-    background: $secondary-color;
-    box-shadow: 0 0 10px rgba(255, 75, 75, 0.8);
+  &:hover:not(:disabled) {
+    background: color.scale($bg, $lightness: 5%);
+    box-shadow: 0 0 10px rgba($bg, 0.4);
   }
 
   &:disabled {
-    background: #444;
+    background: vars.$color-grey;
     cursor: not-allowed;
   }
+}
+
+// 🃏 Card surface helper
+@mixin surface-card(
+  $padding: 20px,
+  $radius: vars.$border-radius-md,
+  $bg: vars.$color-surface,
+  $shadow: vars.$shadow-lg
+) {
+  background: $bg;
+  color: vars.$text-dark;
+  border-radius: $radius;
+  padding: $padding;
+  box-shadow: $shadow;
+}
+
+// 🌅 Gradient background
+@mixin gradient-background($gradient: vars.$gradient-primary) {
+  background: $gradient;
+}
+
+// 📦 Hover effect for elevate cards
+@mixin hover-raise {
+  transition: transform vars.$transition-base, box-shadow vars.$transition-base;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: vars.$shadow-xl;
+  }
+}
+
+// 🧭 Flexbox centering utility
+@mixin flex-center($direction: row, $gap: 0, $justify: center) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: $justify;
+  gap: $gap;
+}
+
+// ✈️ Fade animations
+@mixin fade-in(
+  $duration: 0.6s,
+  $timing: ease-in-out,
+  $delay: 0s,
+  $fill: forwards
+) {
+  animation: fadeIn $duration $timing $delay $fill;
+}
+
+@mixin fade-in-up(
+  $duration: 0.6s,
+  $timing: ease-in-out,
+  $delay: 0s,
+  $fill: forwards
+) {
+  animation: fadeInUp $duration $timing $delay $fill;
+}
+
+@mixin fade-in-left(
+  $duration: 0.6s,
+  $timing: ease-in-out,
+  $delay: 0s,
+  $fill: forwards
+) {
+  animation: fadeInLeft $duration $timing $delay $fill;
+}
+
+@mixin fade-in-right(
+  $duration: 0.6s,
+  $timing: ease-in-out,
+  $delay: 0s,
+  $fill: forwards
+) {
+  animation: fadeInRight $duration $timing $delay $fill;
 }

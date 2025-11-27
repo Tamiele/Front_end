@@ -1,3 +1,5 @@
+@use "mixins" as mix;
+
 .animation {
-  animation: fadeIn 0.6s ease-in-out;
+  @include mix.fade-in(0.6s);
 }

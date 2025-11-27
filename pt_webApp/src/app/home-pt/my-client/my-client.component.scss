@@ -1,3 +1,6 @@
+@use "mixins" as mix;
+@use "variables" as vars;
+
 /* Parte superiore con il testo */
 
 /* Nome Utente */
@@ -10,11 +13,11 @@
 /* Box di ricerca cliente */
 .search-client-box {
   text-align: center;
-  animation: fadeIn 0.6s ease-in-out;
+  @include mix.fade-in(0.6s);
 }
 
 .search-title {
-  color: black;
+  color: vars.$text-dark;
   font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 10px;
@@ -23,13 +26,15 @@
 /* Card Cliente Trovato */
 .found-client-card {
   margin-top: 20px;
-  padding: 15px;
-  border-radius: 10px;
-  background: white;
-  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
-  color: black;
+  color: vars.$text-dark;
+  @include mix.surface-card(
+    15px,
+    vars.$border-radius-md,
+    vars.$color-surface,
+    vars.$shadow-xl
+  );
   text-align: start;
-  animation: fadeIn 0.6s ease-in-out;
+  @include mix.fade-in(0.6s);
 }
 
 .found-client-card p {
@@ -41,34 +46,34 @@
   border: none;
   font-size: 20px;
   cursor: pointer;
-  color: black;
-  transition: all 0.3s ease-in-out;
+  color: vars.$text-dark;
+  transition: vars.$transition-base;
 
   &:hover {
-    color: #ff4b4b;
+    color: vars.$color-error;
     transform: scale(1.2);
   }
 }
 
 .container-table {
   margin-top: 6rem;
-  animation: fadeIn 1s ease-in-out;
+  @include mix.fade-in(1s);
 }
 
 /* Tabella */
 .custom-table {
   width: 100%;
   border-collapse: collapse;
-  color: black;
-  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.08);
-  border-radius: 5px;
+  color: vars.$text-dark;
+  box-shadow: vars.$shadow-xl;
+  border-radius: vars.$border-radius-sm;
   overflow: hidden;
 }
 
 /* Intestazione tabella */
 .custom-table thead {
-  background: white;
-  color: black;
+  background: vars.$color-surface;
+  color: vars.$text-dark;
   text-align: left;
 }
 
@@ -79,10 +84,10 @@
 }
 
 .custom-table tbody tr {
-  background: white;
+  background: vars.$color-surface;
 }
 
 .custom-table td {
   padding: 10px;
-  border-top: solid 1px #dfdddd52;
+  border-top: solid 1px rgba(vars.$color-grey, 0.32);
 }

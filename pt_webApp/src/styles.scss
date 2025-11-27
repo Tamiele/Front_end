@@ -1,84 +1,66 @@
+@use "sass:map";
+@use "variables" as vars;
+@use "mixins" as mix;
+
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 
-// Colori principali
+// Palette personalizzata condivisa con Bootstrap
 $custom-colors: (
-  "orange": #ffc278,
-  "bg-page": #f0ebe4,
-  "botton-color": #c87340,
-  "error-color": #ff4b4b,
-  "success-color": #28a745,
-  "warning-color": #f4a700,
+  "orange": vars.$color-accent,
+  "bg-page": vars.$color-surface-muted,
+  "botton-color": vars.$color-primary,
+  "error-color": vars.$color-error,
+  "success-color": vars.$color-success,
+  "warning-color": vars.$color-warning,
 );
 
-$theme-colors: map-merge($theme-colors, $custom-colors);
+$theme-colors: map.merge($theme-colors, $custom-colors);
 @import "bootstrap/scss/bootstrap";
 
-//classe Form
+// Classe form globale
 .global-form-control {
   width: 100%;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: vars.$border-radius-sm;
   border: 2px solid transparent;
-  transition: all 0.3s ease-in-out;
-  background: white;
-  box-shadow: 0px 0px 20px 8px rgba(17, 17, 26, 0.08);
-  color: black;
+  transition: vars.$transition-base;
+  background: vars.$color-surface;
+  box-shadow: vars.$shadow-lg;
+  color: vars.$text-dark;
   outline: none;
+
+  @include mix.glow-effect;
 }
 
 .global-form-control::placeholder {
-  color: rgba(black, 0.55);
+  color: rgba(vars.$text-dark, 0.55);
 }
 
-.global-form-control:focus {
-  border-color: #ffc278;
+.global-form-control:disabled {
+  background: vars.$color-surface-muted;
+  cursor: not-allowed;
 }
 
-//bottone remove
+// Bottoni globali
 .btn-remove {
-  padding: 10px;
-  background: #c87340;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
+  @include mix.button-filled(vars.$color-primary, vars.$text-light);
   font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
 }
 
-.btn-remove:hover {
-  background: #ffcc8d;
-  box-shadow: 0 0 10px rgba(#ffcc8d, 0.8);
-}
-
-//bottone verde
 .btn-add {
-  padding: 10px;
-  background: #c87340;
-  color: white;
-  font-weight: bold;
-
-  border: none;
-  border-radius: 5px;
+  @include mix.button-filled(vars.$color-accent, vars.$text-dark);
   font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.btn-add:hover {
-  background: #ffcc8d;
-  box-shadow: 0 0 10px rgba(#ffcc8d, 0.8);
 }
 
 /* Card */
 .cardCustom {
   max-width: 450px;
-  color: black;
-  animation: fadeIn 0.6s ease-in-out;
+  color: vars.$text-dark;
+  @include mix.fade-in();
 }
 
+/* Animazioni globali */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -87,5 +69,57 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
   }
 }

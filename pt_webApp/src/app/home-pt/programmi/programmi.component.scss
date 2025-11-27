@@ -1,13 +1,14 @@
+@use "mixins" as mix;
+@use "variables" as vars;
+
 /* Contenitore principale della card */
 .create-program-container {
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
-  background: #fff;
-  color: #000;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px 8px rgba(17, 17, 26, 0.08);
-  animation: fadeIn 1s ease-in-out;
+  color: vars.$text-dark;
+  @include mix.surface-card(20px);
+  @include mix.fade-in(1s);
 }
 
 /* Step progress */
@@ -19,7 +20,7 @@
 .step {
   width: 40px;
   height: 40px;
-  background: grey;
+  background: vars.$color-grey;
   color: white;
   display: flex;
   align-items: center;
@@ -28,8 +29,8 @@
   transition: 0.3s ease-in-out;
 }
 .step.active {
-  background: #c87340;
-  box-shadow: 0px 0px 20px 8px rgba(17, 17, 26, 0.08);
+  background: vars.$color-primary;
+  box-shadow: vars.$shadow-lg;
 }
 
 /* Step content */
@@ -62,8 +63,8 @@
 }
 .filter-container select {
   padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid vars.$color-grey-border;
+  border-radius: vars.$border-radius-sm;
   font-size: 1rem;
   max-width: 200px;
 }
@@ -75,8 +76,8 @@
   justify-content: space-between;
   margin-bottom: 10px;
   padding: 8px;
-  border: 1px solid #eee;
-  border-radius: 4px;
+  border: 1px solid rgba(vars.$color-grey, 0.2);
+  border-radius: vars.$border-radius-sm;
 }
 .exercise-label {
   display: flex;
@@ -91,15 +92,15 @@
   width: 17px;
   height: 17px;
   background: white;
-  border-radius: 4px;
-  border: 1px solid black;
+  border-radius: vars.$border-radius-sm;
+  border: 1px solid vars.$text-dark;
   cursor: pointer;
   position: relative;
 }
 
 .exercise-label input[type="checkbox"]:checked {
-  background: #c87340;
-  border: 1px solid black;
+  background: vars.$color-primary;
+  border: 1px solid vars.$text-dark;
 }
 
 .exercise-label input[type="checkbox"]:checked::before {
@@ -133,8 +134,8 @@
   width: 50px;
   padding: 4px;
   font-size: 0.85rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid vars.$color-grey-border;
+  border-radius: vars.$border-radius-sm;
 }
 
 /* Responsività */
@@ -158,12 +159,10 @@
 }
 
 .pagination-button {
-  padding: 8px 12px;
+  padding: 0;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background: #c87340;
-  color: white;
+  background: none;
+  @include mix.button-filled(vars.$color-primary);
 }
 
 .pagination-button:disabled {
@@ -177,16 +176,5 @@
 
 .animated-card {
   opacity: 0;
-  animation: fadeInUp 0.6s forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  @include mix.fade-in-up(0.6s);
 }
