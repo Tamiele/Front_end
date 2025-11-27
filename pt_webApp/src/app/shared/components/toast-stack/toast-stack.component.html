@@ -1,0 +1,17 @@
+<div class="toast-stack" role="status" aria-live="polite">
+  <div
+    class="toast"
+    *ngFor="let toast of toasts$ | async"
+    [ngClass]="'toast--' + toast.level"
+  >
+    <div class="toast__content">{{ toast.message }}</div>
+    <button
+      class="toast__close"
+      type="button"
+      aria-label="Chiudi notifica"
+      (click)="dismiss(toast.id)"
+    >
+      &times;
+    </button>
+  </div>
+</div>

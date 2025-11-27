@@ -1,0 +1,9 @@
+<app-surface-card class="profile-panel">
+  <div class="profile-panel__header">
+    <h2>{{ title }}</h2>
+    <ng-content select="[actions]"></ng-content>
+  </div>
+  <div class="profile-panel__body">
+    <ng-content></ng-content>
+  </div>
+</app-surface-card>

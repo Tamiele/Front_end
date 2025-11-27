@@ -1,0 +1,47 @@
+.toast-stack {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 1100;
+}
+
+.toast {
+  @extend .surface-card;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 260px;
+  border-left: 4px solid transparent;
+
+  &__content {
+    flex: 1;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+
+  &--success {
+    border-color: #28a745;
+  }
+
+  &--error {
+    border-color: #ff4b4b;
+  }
+
+  &--warning {
+    border-color: #f4a700;
+  }
+
+  &--info {
+    border-color: #1f7aec;
+  }
+}

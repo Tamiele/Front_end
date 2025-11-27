@@ -28,31 +28,28 @@
 
   <div class="row justify-content-center mt-4 p-4 gap-3">
     <div class="col-12 col-md-4">
-      <div class="dashboard-card text-center animated-card">
-        <div class="card-body">
-          <a class="card-title" routerLink="/HomePt/clienti"
-            >Cerca Nuovi Clienti</a
-          >
-        </div>
-      </div>
+      <app-card-metric
+        label="Cerca Nuovi Clienti"
+        icon="fas fa-users"
+        [routerLink]="['/HomePt/clienti']"
+        variant="accent"
+      ></app-card-metric>
     </div>
     <div class="col-12 col-md-4">
-      <div class="dashboard-card text-center animated-card">
-        <div class="card-body">
-          <a class="card-title" routerLink="/HomePt/programmi"
-            >Crea e Assegna Programmi Personalizzati</a
-          >
-        </div>
-      </div>
+      <app-card-metric
+        label="Programmi Personalizzati"
+        icon="fas fa-tasks"
+        description="Crea e assegna piani su misura"
+        [routerLink]="['/HomePt/programmi']"
+        variant="primary"
+      ></app-card-metric>
     </div>
     <div class="col-12 col-md-4">
-      <div class="dashboard-card text-center animated-card">
-        <div class="card-body">
-          <a class="card-title" routerLink="/HomePt/esercizi"
-            >Crea Nuovi Esercizi</a
-          >
-        </div>
-      </div>
+      <app-card-metric
+        label="Crea Nuovi Esercizi"
+        icon="fas fa-dumbbell"
+        [routerLink]="['/HomePt/esercizi']"
+      ></app-card-metric>
     </div>
   </div>
 </div>

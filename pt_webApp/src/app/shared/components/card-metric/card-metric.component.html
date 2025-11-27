@@ -1,0 +1,27 @@
+<app-surface-card
+  [hoverable]="!!routerLink"
+  class="card-metric"
+  [ngClass]="'card-metric--' + variant"
+>
+  <a
+    *ngIf="routerLink; else plain"
+    [routerLink]="routerLink"
+    class="card-metric__link"
+  >
+    <ng-container *ngTemplateOutlet="plain"></ng-container>
+  </a>
+  <ng-template #plain>
+    <div class="card-metric__content" [attr.aria-label]="label">
+      <div class="card-metric__icon" *ngIf="icon">
+        <i [class]="icon" aria-hidden="true"></i>
+      </div>
+      <div>
+        <p class="card-metric__label">{{ label }}</p>
+        <p class="card-metric__value">{{ value }}</p>
+        <p class="card-metric__description" *ngIf="description">
+          {{ description }}
+        </p>
+      </div>
+    </div>
+  </ng-template>
+</app-surface-card>

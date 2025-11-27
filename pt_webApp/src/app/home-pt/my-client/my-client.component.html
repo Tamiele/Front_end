@@ -1,99 +1,103 @@
-<div class="">
-  <div class="flex-grow-1 d-flex flex-column p-3">
-    <div class="row g-3">
-      <!-- Card Totale Clienti -->
-      <div
-        class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start h-25"
-      >
-        <div class="cardCustom">
-          <div class="imge">
-            <p class="UserName m-0">Totale Clienti: {{ totalClienti }}</p>
-          </div>
-        </div>
-      </div>
+<div class="p-3">
+  <div class="row g-4 align-items-stretch">
+    <div class="col-12 col-lg-4">
+      <app-card-metric
+        label="Totale Clienti"
+        [value]="totalClienti"
+        icon="fas fa-users"
+        variant="primary"
+      ></app-card-metric>
+    </div>
 
-      <!-- Card per Ricerca  Cliente -->
-      <div class="col-12 col-md-6 d-flex flex-column">
-        <div class="search-client-box">
-          <h3 class="search-title">Cerca un Cliente</h3>
-          <div class="row align-items-center g-2">
-            <div class="col-12 col-lg-4">
-              <input
-                type="text"
-                class="global-form-control"
-                placeholder="Username"
-                [(ngModel)]="searchUsername"
-              />
-            </div>
-            <div class="col-12 col-lg-4">
-              <input
-                type="email"
-                class="global-form-control"
-                placeholder="Email"
-                [(ngModel)]="searchEmail"
-              />
-            </div>
-            <div class="col-12 col-lg-4">
-              <button class="btn-add w-75" (click)="searchClient()">
-                Cerca <i class="fas fa-search ms-1"></i>
-              </button>
-            </div>
+    <div class="col-12 col-lg-8">
+      <app-surface-card class="search-panel" padding="lg">
+        <h3 class="search-title">Cerca un Cliente</h3>
+        <div class="row align-items-center g-2">
+          <div class="col-12 col-md-4">
+            <input
+              type="text"
+              class="global-form-control"
+              placeholder="Username"
+              [(ngModel)]="searchUsername"
+            />
+          </div>
+          <div class="col-12 col-md-4">
+            <input
+              type="email"
+              class="global-form-control"
+              placeholder="Email"
+              [(ngModel)]="searchEmail"
+            />
+          </div>
+          <div class="col-12 col-md-4 d-flex justify-content-md-end">
+            <button class="btn-add w-100" (click)="searchClient()">
+              Cerca <i class="fas fa-search ms-1"></i>
+            </button>
           </div>
         </div>
 
-        <!-- Card che appare se il cliente è stato trovato -->
-        <div *ngIf="searchedClient" class="found-client-card mt-3">
-          <div class="d-flex justify-content-end align-items-center">
+        <app-surface-card
+          *ngIf="searchedClient"
+          class="found-client-card mt-3"
+          padding="md"
+        >
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <p><strong>Nome:</strong> {{ searchedClient.nome }}</p>
+              <p><strong>Cognome:</strong> {{ searchedClient.cognome }}</p>
+              <p><strong>Username:</strong> {{ searchedClient.username }}</p>
+              <p><strong>Email:</strong> {{ searchedClient.email }}</p>
+            </div>
             <button class="btn-close-card" (click)="closeSearchedClient()">
               <i class="fas fa-times"></i>
             </button>
           </div>
-          <p><strong>Nome:</strong> {{ searchedClient.nome }}</p>
-          <p><strong>Cognome:</strong> {{ searchedClient.cognome }}</p>
-          <p><strong>Username:</strong> {{ searchedClient.username }}</p>
-          <p><strong>Email:</strong> {{ searchedClient.email }}</p>
-          <button class="btn-add" (click)="addClient(searchedClient.id)">
+          <button class="btn-add mt-2" (click)="addClient(searchedClient.id)">
             <i class="fas fa-user-plus me-1"></i> Aggiungi ai clienti
           </button>
-        </div>
-      </div>
-
-      <div class="container container-table">
-        <h4 class="search-title text-center">I Tuoi Clienti</h4>
-        <input
-          type="text"
-          class="global-form-control search-input mb-3"
-          placeholder="Cerca per nome o cognome"
-          [(ngModel)]="searchTerm"
-        />
-
-        <!-- Nessun Cliente Trovato -->
-        <div *ngIf="filteredClienti.length === 0" class="text-center">
-          Nessun cliente trovato.
-        </div>
-
-        <!-- Tabella Clienti -->
-        <table *ngIf="filteredClienti.length > 0" class="custom-table">
-          <thead class="">
-            <tr>
-              <th>Nome</th>
-              <th>Cognome</th>
-              <th>Azioni</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let cliente of filteredClienti || []">
-              <td>{{ cliente.nome }}</td>
-              <td>{{ cliente.cognome }}</td>
-              <td>
-                <button class="btn-remove" (click)="removeClient(cliente.id)">
-                  <i class="fas fa-trash-alt me-1"></i> Elimina
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        </app-surface-card>
+      </app-surface-card>
     </div>
   </div>
+
+  <app-surface-card class="mt-4" padding="lg">
+    <div class="d-flex flex-column">
+      <h4 class="search-title text-center">I tuoi clienti</h4>
+      <input
+        type="text"
+        class="global-form-control search-input mb-3"
+        placeholder="Cerca per nome o cognome"
+        [(ngModel)]="searchTerm"
+      />
+
+      <ng-container *ngIf="filteredClienti.length > 0; else emptyState">
+        <div class="table-responsive">
+          <table class="custom-table w-100">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th class="text-end">Azioni</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of filteredClienti">
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.cognome }}</td>
+                <td class="text-end">
+                  <button class="btn-remove" (click)="removeClient(cliente.id)">
+                    <i class="fas fa-trash-alt me-1"></i> Elimina
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-container>
+
+      <ng-template #emptyState>
+        <p class="text-center mb-0">Nessun cliente trovato.</p>
+      </ng-template>
+    </div>
+  </app-surface-card>
 </div>

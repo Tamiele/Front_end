@@ -1,0 +1,28 @@
+.surface-card {
+  display: block;
+  border-radius: var(--surface-radius, 10px);
+  background: var(--surface-bg, #fff);
+  box-shadow: var(--surface-shadow, 0px 0px 20px 8px rgba(17, 17, 26, 0.08));
+  color: var(--surface-color, #000);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &--hoverable:hover {
+    transform: translateY(-2px);
+    box-shadow: var(
+      --surface-shadow-hover,
+      0px 0px 20px 16px rgba(17, 17, 26, 0.12)
+    );
+  }
+
+  &--padding-sm {
+    padding: 0.75rem;
+  }
+
+  &--padding-md {
+    padding: 1.25rem;
+  }
+
+  &--padding-lg {
+    padding: 2rem;
+  }
+}

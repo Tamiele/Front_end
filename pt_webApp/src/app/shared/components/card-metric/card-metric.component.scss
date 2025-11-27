@@ -1,0 +1,49 @@
+.card-metric {
+  width: 100%;
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__icon {
+    font-size: 2rem;
+  }
+
+  &__label {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.75;
+  }
+
+  &__value {
+    margin: 0.2rem 0;
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
+    font-weight: 700;
+  }
+
+  &__description {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  &--primary {
+    --surface-bg: #c87340;
+    --surface-color: #fff;
+    --surface-shadow-hover: 0 10px 25px rgba(200, 115, 64, 0.4);
+  }
+
+  &--accent {
+    --surface-bg: #ffc278;
+    --surface-color: #000;
+  }
+}

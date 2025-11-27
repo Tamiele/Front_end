@@ -1,0 +1,17 @@
+.profile-panel {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    h2 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__body {
+    margin-top: 1rem;
+  }
+}
